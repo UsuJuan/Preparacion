@@ -69,25 +69,25 @@
 	$(function(){
 		$('.alert-danger').css('display','none');
 
-		if(localStorage.getItem('tipo_lec_1_bob')==null){
+		if(localStorage.getItem('tipo_lec_1_pre')==null){
 			window.location = 'lecturamenu.html';
 		}
 
-		if (localStorage.getItem("maquinas_bob")==null || localStorage.getItem("turnos")==null || localStorage.getItem("turno_val_bob")==null){
+		if (localStorage.getItem("maquinas_pre")==null || localStorage.getItem("turnos")==null || localStorage.getItem("turno_val_pre")==null){
 			$('#modalbox').click();
 		}
 
-		if(localStorage.getItem('turno_bob')!=null){
-			if (localStorage.getItem('tipo_lec_2_bob')=="normal"){
+		if(localStorage.getItem('turno_pre')!=null){
+			if (localStorage.getItem('tipo_lec_2_pre')=="normal"){
 				window.location = 'lectura2.html';
-			}else if (localStorage.getItem('tipo_lec_2_bob')=="parcial"){
+			}else if (localStorage.getItem('tipo_lec_2_pre')=="parcial"){
 				window.location = 'lecturaparcial2.html';
 			}
 		}
 
 		array_turnos = JSON.parse(localStorage.getItem("turnos"));
 		if (array_turnos!=null){
-			max_turno = localStorage.getItem('turno_val_bob');
+			max_turno = localStorage.getItem('turno_val_pre');
 			if (max_turno == 3){
 				max_turno = 1;
 			}else{
@@ -105,14 +105,14 @@
 		$('form[name=form_turno]').on('submit',function(evt){
 			evt.preventDefault();
 			if(valida()==1){
-				localStorage.setItem("turno_bob",$('#turno').val());
+				localStorage.setItem("turno_pre",$('#turno').val());
 				turno = parseInt($('#turno').val(),10);
-				localStorage.setItem('turno_val_bob',turno);
-				if(localStorage.getItem('tipo_lec_1_bob')==0){
-					localStorage.setItem('tipo_lec_2_bob',"normal");
+				localStorage.setItem('turno_val_pre',turno);
+				if(localStorage.getItem('tipo_lec_1_pre')==0){
+					localStorage.setItem('tipo_lec_2_pre',"normal");
 					window.location = 'lectura2.html';					
-				}else if (localStorage.getItem('tipo_lec_1_bob')==1){
-					localStorage.setItem('tipo_lec_2_bob',"parcial");
+				}else if (localStorage.getItem('tipo_lec_1_pre')==1){
+					localStorage.setItem('tipo_lec_2_pre',"parcial");
 					window.location = 'lecturaparcial2.html';
 				}
 			}			

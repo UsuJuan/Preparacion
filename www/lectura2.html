@@ -53,70 +53,25 @@
 		</div>
 		<div class="form-group">
 		   	<div class="text-center">
-		   		<label for="unidad" class="control-label label_grande">UNIDAD</label>
+		   		<label for="nombre" class="control-label label_grande">NOMBRE</label>
 		   	</div>
 	   		<div class="col-md-4"></div>
 			<div class="col-sm-1 col-md-4">
-			      <input type="text" class="form-control input_grande" id="unidad" name="unidad" disabled>
+			      <input type="text" class="form-control input_grande" id="nombre" name="nombre" disabled>
 			</div>			
 		</div>
 		<div class="form-group">
 			<div class="text-center">
-		   		<label for="kgs" class="control-label label_grande">KGS</label>
+		   		<label for="contador" class="control-label label_grande">CONTADOR</label>
 		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="kgs_1" name="kgs_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="kgs_2" name="kgs_2" >
+		   	<div class="col-md-4"></div>
+		   	<div class="col-sm-1 col-md-4">
+		      	<input type="number" class="form-control input_grande" id="contador" name="contador" >
 		    </div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-kgs" role="alert">
-	      		<h2>COMPLETAR!</h2>
-	      	</div>
-	    </div>
-		<div class="form-group">
-			<div class="text-center">
-		   		<label for="purgador" class="control-label label_grande">CORTE PURGADOR</label>
-		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="purgador_1" name="purgador_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="purgador_2" name="purgador_2" >
-		    </div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-purgador" role="alert">
-	      		<h2>COMPLETAR!</h2>
-	      	</div>
-	    </div>
-	    <div class="form-group">
-			<div class="text-center">
-		   		<label for="empalmes" class="control-label label_grande">EMPALMES</label>
-		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="empalmes_1" name="empalmes_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="empalmes_2" name="empalmes_2" >
-		    </div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-empalmes" role="alert">
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-contador" role="alert">
 	      		<h2>COMPLETAR!</h2>
 	      	</div>
 	    </div>
@@ -130,21 +85,21 @@
 <script type="text/javascript" src="js/jquery.min.js" ></script>
 <script type="text/javascript" src="js/bootstrap.js" ></script>
 <script>
-	var Json_lec_bob;
-	var array_bob = [];
-	if (localStorage.getItem("lis_lec_bob")!=null){
-		array_bob = JSON.parse(localStorage.getItem("lis_lec_bob"));
-		len_lecs_bob = JSON.parse(localStorage.getItem("lis_lec_bob")).length;
+	var Json_lec_pre;
+	var array_pre = [];
+	if (localStorage.getItem("lis_lec_pre")!=null){
+		array_pre = JSON.parse(localStorage.getItem("lis_lec_pre"));
+		len_lecs_pre = JSON.parse(localStorage.getItem("lis_lec_pre")).length;
 	}else{
-		len_lecs_bob = 0;
+		len_lecs_pre = 0;
 	}
-	if(localStorage.getItem('id_bob')==null){
-		localStorage.setItem('id_bob',1);
+	if(localStorage.getItem('id_pre')==null){
+		localStorage.setItem('id_pre',1);
 	}
-	if (localStorage.getItem("contador_bob")==null){
+	if (localStorage.getItem("contador_pre")==null){
 		cont = 0;
 	}else{
-		cont = localStorage.getItem("contador_bob");
+		cont = localStorage.getItem("contador_pre");
 	}
 	// FECHA Y HORA						
 		var fecha = new Date();
@@ -160,17 +115,11 @@
 
 	$(function(){	
 
-		if(localStorage.getItem('turno_bob')==null){
+		if(localStorage.getItem('turno_pre')==null){
 			window.location = 'lecturamenu.html';
-		}
-		
-	    $(".decimal").keypress(function(evt){
-			if($(this).val().length==2){
-		        return false;
-		    }
-	    });
-
-	    if (localStorage.getItem("lis_parcial_bob")!=null || localStorage.getItem("tipo_lec_2_bob")=="parcial"){
+		}		
+	   
+	    if (localStorage.getItem("lis_parcial_pre")!=null || localStorage.getItem("tipo_lec_2_pre")=="parcial"){
 			$('#mensajitos').remove();
 			$('#mensajes').append("<div id='mensajitos' ></div>");
 			$('#mensajitos').append("<h2 >Necesita subir lectura parcial.</h2>");
@@ -178,7 +127,7 @@
 		}
 
 	    // Tipo bobinadoras
-		array_tb = JSON.parse(localStorage.getItem("tipo_bobinadoras"));
+		array_tb = JSON.parse(localStorage.getItem("tipo_preparacion"));
 		for(var i=0;i<array_tb.length;i++){
 			$('#maquina').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
 		}
@@ -187,7 +136,7 @@
 	    my_array = JSON.parse(localStorage.getItem('turnos'));
 	    hora_turno = my_array[2].hora_inicio;
 	    hora_max = (parseInt(hora_turno.substring(0,2),10)-1);
-    	if((localStorage.getItem('turno_bob')=="2" || localStorage.getItem('turno_bob')=="3") && hora < hora_max){
+    	if((localStorage.getItem('turno_pre')=="2" || localStorage.getItem('turno_pre')=="3") && hora < hora_max){
     		fecha.setDate(fecha.getDate()-1);
     	}
     	dia = fecha.getDate();
@@ -197,45 +146,43 @@
 		if(mes<10) mes = String("0"+mes);	
 		if(hora<10) hora = String("0"+hora);
 		if(minutos<10) minutos = String("0"+minutos);
-		fecha_lec_bob = String(annio+"-"+mes+"-"+dia);
-		hora_ing_bob = String(hora+":"+minutos+":"+"00");
+		fecha_lec_pre = String(annio+"-"+mes+"-"+dia);
+		hora_ing_pre = String(hora+":"+minutos+":"+"00");
 	    // FECHA Y TURNO
 	
-		$('#error-kgs').css('display','none');
-		$('#error-purgador').css('display','none');
-		$('#error-empalmes').css('display','none');
+		$('#error-contador').css('display','none');
 
 		function MyFunction(){
-			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_bob"))[0].nombre);
-			$('#unidad').val(JSON.parse(localStorage.getItem("maquinas_bob"))[0].unidad);
+			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_pre"))[0].tipomaquina);
+			$('#nombre').val(JSON.parse(localStorage.getItem("maquinas_pre"))[0].nombre);
 		}
-		if(len_lecs_bob == 0){
-			localStorage.setItem("contador_bob",0);
+		if(len_lecs_pre == 0){
+			localStorage.setItem("contador_pre",0);
 			cont=0;
 			MyFunction();
-		}else if((len_lecs_bob % JSON.parse(localStorage.getItem("maquinas_bob")).length)==0){
-			localStorage.setItem("contador_bob",0);		
-			cont = localStorage.getItem("contador_bob");	
+		}else if((len_lecs_pre % JSON.parse(localStorage.getItem("maquinas_pre")).length)==0){
+			localStorage.setItem("contador_pre",0);		
+			cont = localStorage.getItem("contador_pre");	
 			cont=0;
 			MyFunction();
 		}else{
-			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_bob"))[cont].nombre);
-			$('#unidad').val(JSON.parse(localStorage.getItem("maquinas_bob"))[cont].unidad);
+			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].tipomaquina);
+			$('#nombre').val(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].nombre);
 		}
 
 		function Valida(){
 			var rpta=1;
-			if ($('#kgs_1').val()==""){
+			var nro_dig = parseInt(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].digitos);
+			$('#digitos').remove();
+			if ($('#contador').val()==""){
 				rpta = 0;
-				$('#error-kgs').show().delay(5000).fadeOut();
-			}
-			if ($('#purgador_1').val()==""){
-				rpta = 0;
-				$('#error-purgador').show().delay(5000).fadeOut();
-			}
-			if ($('#empalmes_1').val()==""){
-				rpta = 0;
-				$('#error-empalmes').show().delay(5000).fadeOut();
+				$('#error-contador').show().delay(5000).fadeOut();
+			}else {				
+				if(nro_dig!=parseInt($('#contador').val().length)){					
+					rpta=0;
+					$('#error-contador').append('<h2 id="digitos" >'+nro_dig+' digitos</h2>');
+					$('#error-contador').show().delay(5000).fadeOut();
+				}
 			}
 			return rpta;
 		}
@@ -243,47 +190,30 @@
 		$('form[name=form_lectura]').on('submit',function(evt){
 			evt.preventDefault();			
 			if(Valida()==1){
-				if($('#kgs_2').val()==""){
-					kgs = $('#kgs_1').val()+".0";
-				}else{
-					kgs = $('#kgs_1').val()+"."+$('#kgs_2').val();
-				}
-				if($('#purgador_2').val()==""){
-					purgador = $('#purgador_1').val()+".0";
-				}else{
-					purgador = $('#purgador_1').val()+"."+$('#purgador_2').val();
-				}
-				if($('#empalmes_2').val()==""){
-					empalmes = $('#empalmes_1').val()+".0";
-				}else{
-					empalmes = $('#empalmes_1').val()+"."+$('#empalmes_2').val();
-				}
-				Json_lec_bob = {
-					"id" : localStorage.getItem("id_bob"),
-					"turno" : localStorage.getItem("turno_bob"),
+				Json_lec_pre = {
+					"id" : localStorage.getItem("id_pre"),
+					"turno" : localStorage.getItem("turno_pre"),
 					"maquina" : $('#maquina').val(),
-					"unidad" : $('#unidad').val(),
-					"kgs" : kgs,
-					"purgador" : purgador,
-					"empalmes" : empalmes,
-					"fecha" : fecha_lec_bob,
-					"hora" : hora_ing_bob,
+					"nombre" : $('#nombre').val(),
+					"contador" : $('#contador').val(),
+					"fecha" : fecha_lec_pre,
+					"hora" : hora_ing_pre,
 					"tipo_lectura" :"NORMAL",
 					"fecha_ingreso" : fecha_ingreso,
 				}
-				array_bob.push(Json_lec_bob);
-				var jsontostring = JSON.stringify(array_bob);
+				array_pre.push(Json_lec_pre);
+				var jsontostring = JSON.stringify(array_pre);
 				cont++;
-				id = parseInt(localStorage.getItem("id_bob"),10);
-				localStorage.setItem('id_bob',id+1);
-				localStorage.setItem("contador_bob", cont);
-				localStorage.setItem("lis_lec_bob", jsontostring);
-				if(((len_lecs_bob+1) % JSON.parse(localStorage.getItem("maquinas_bob")).length)==0){
+				id = parseInt(localStorage.getItem("id_pre"),10);
+				localStorage.setItem('id_pre',id+1);
+				localStorage.setItem("contador_pre", cont);
+				localStorage.setItem("lis_lec_pre", jsontostring);
+				if(((len_lecs_pre+1) % JSON.parse(localStorage.getItem("maquinas_pre")).length)==0){
 					$('#mensajitos').remove();
 					$('#mensajes').append("<div id='mensajitos' ></div>");
 					$('#mensajitos').append("<h2 >La ruta ha terminado.</h2>");
 					$('#modalbox').click();
-					localStorage.removeItem('turno_bob');
+					localStorage.removeItem('turno_pre');
 				}else{
 					window.location = 'lectura2.html';					
 				}

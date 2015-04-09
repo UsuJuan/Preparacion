@@ -42,10 +42,10 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <icon src="imagenP.png" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/pre-36.jpg" />
-    <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/pre-48.jpg" />
-    <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/pre-72.jpg" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="www/res/icon/android/pre-96.jpg" />
+    <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/pre-36.png" />
+    <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/pre-48.png" />
+    <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/pre-72.png" />
+    <icon gap:platform="android" gap:qualifier="xhdpi" src="www/res/icon/android/pre-96.png" />
     <icon gap:platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="blackberry" gap:state="hover" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="ios" height="57" src="www/res/icon/ios/icon-57.png" width="57" />

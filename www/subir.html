@@ -57,7 +57,7 @@
 		$('#mensajes').append("<div id='mensajitos' ></div>");
 		$('#subir').css('display','none');
 
-		$.getJSON('http://192.168.1.33/transferencias/coneccion/preparacion/?callback=?')
+		$.getJSON('http://10.240.17.56/transferencias/coneccion/preparacion/?callback=?')
 		.done(function() {
 			console.log('exito');
 			$('#subir').css('display','inline');
@@ -119,7 +119,7 @@
 			}
 
 			$.ajax({
-				url: 'http://192.168.1.33/transferencias/subir/preparacion/',
+				url: 'http://10.240.17.56/transferencias/subir/preparacion/',
 				type: 'POST',
 				crossDomain: true,
 				data: {					

@@ -41,7 +41,7 @@
 		$('.alert-success').css('display','none');
 		$('#bajar').css('display','none');
 
-		$.getJSON('http://192.168.1.33/transferencias/coneccion/preparacion/?callback=?')
+		$.getJSON('http://10.240.17.56/transferencias/coneccion/preparacion/?callback=?')
 		.done(function(response) {
 			console.log('exito');
 			localStorage.setItem("turno_val_pre", response.turno);
@@ -73,7 +73,7 @@
 		};
 		$('form').on('submit',function(evt){
 			evt.preventDefault();
-			$.getJSON('http://192.168.1.33/transferencias/bajar/maquinas/preparacion/?callback=?', mostrar_maquinas)
+			$.getJSON('http://10.240.17.56/transferencias/bajar/maquinas/preparacion/?callback=?', mostrar_maquinas)
 				.done(function() {
 					$('.alert-success').show().delay(5000).fadeOut();
 					console.log('exito');
@@ -83,7 +83,7 @@
 			  		console.log('fallo');
 			  	});				
 
-			$.getJSON('http://192.168.1.33/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
+			$.getJSON('http://10.240.17.56/transferencias/bajar/turnos/?callback=?', mostrar_turnos)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -93,7 +93,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://192.168.1.33/transferencias/bajar/tipopreparacion/?callback=?', mostrar_tipo_preparacion)
+			$.getJSON('http://10.240.17.56/transferencias/bajar/tipopreparacion/?callback=?', mostrar_tipo_preparacion)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -103,7 +103,7 @@
 			    	console.log('fallo');
 			  	});	
 
-			$.getJSON('http://192.168.1.33/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
+			$.getJSON('http://10.240.17.56/transferencias/bajar/lineas/?callback=?', mostrar_lineas)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');
@@ -113,7 +113,7 @@
 			    	console.log('fallo');
 			  	});
 
-			$.getJSON('http://192.168.1.33/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
+			$.getJSON('http://10.240.17.56/transferencias/bajar/motivosparo/?callback=?', mostrar_motivos_paro)
 				.done(function() {
 			    	$('.alert-success').show().delay(5000).fadeOut();
 			    	console.log('exito');

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Ingresar datos</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<!-- <div class="alert alert-danger text-center" role="alert">
+		<h3>
+			DEBE LLENAR UN CAMPO.
+		</h3>
+	</div> -->
+	<!-- Button trigger modal -->
+	<button id="modalbox" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#myModal">
+	  	Modal
+	</button>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+		      <div class="modal-header">
+			        <h4 class="modal-title alert alert-info" id="myModalLabel">Mensaje</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<div class="alert alert-warning" id="mensajes" role="alert"></div>
+		      </div>
+		      <div class="modal-footer">
+			        <a href="index.html" name="ok" class="btn btn-primary btn-lg">Ok</a>
+		      </div>
+	    	</div>
+	  	</div>
+	</div>
+	<!-- Modal -->
+	<form class="form-horizontal my_form" role="form" name="form_lectura" action="" method="POST" >
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="maquina" class="control-label label_grande">MAQUINA</label>
+		   	</div>
+	   		<div class="col-md-4"></div>
+			<div class="col-sm-1 col-md-4">
+			    <select name="maquina" id="maquina" class="form-control input_grande" disabled>
+		      		<option value="" >Seleccionar</option>
+				</select>
+			</div>			
+		</div>
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="unidad" class="control-label label_grande">UNIDAD</label>
+		   	</div>
+	   		<div class="col-md-4"></div>
+			<div class="col-sm-1 col-md-4">
+			      <input type="text" class="form-control input_grande" id="unidad" name="unidad" disabled>
+			</div>			
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="kgs" class="control-label label_grande">KGS</label>
+		   	</div>
+		   	<div class="col-sm-7 col-xs-7">
+		      	<input type="number" class="form-control input_grande" id="kgs_1" name="kgs_1" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande decimal" id="kgs_2" name="kgs_2" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-kgs" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="purgador" class="control-label label_grande">CORTE PURGADOR</label>
+		   	</div>
+		   	<div class="col-sm-7 col-xs-7">
+		      	<input type="number" class="form-control input_grande" id="purgador_1" name="purgador_1" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande decimal" id="purgador_2" name="purgador_2" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-purgador" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+	    <div class="form-group">
+			<div class="text-center">
+		   		<label for="empalmes" class="control-label label_grande">EMPALMES</label>
+		   	</div>
+		   	<div class="col-sm-7 col-xs-7">
+		      	<input type="number" class="form-control input_grande" id="empalmes_1" name="empalmes_1" >
+		    </div>
+		    <div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-4 col-xs-4">
+		    	<input type="number" class="form-control input_grande decimal" id="empalmes_2" name="empalmes_2" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-empalmes" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+		    <div class="col-sm-offset-3">
+		      <a href="lecturamenu.html" class="btn btn-danger boton" >ATRAS</a>
+		      <button type="submit" class="btn btn-primary boton">GUARDAR</button>
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>
+	var Json_lec_bob;
+	var array_bob = [];
+	if (localStorage.getItem("lis_lec_bob")!=null){
+		array_bob = JSON.parse(localStorage.getItem("lis_lec_bob"));
+		len_lecs_bob = JSON.parse(localStorage.getItem("lis_lec_bob")).length;
+	}else{
+		len_lecs_bob = 0;
+	}
+	if(localStorage.getItem('id_bob')==null){
+		localStorage.setItem('id_bob',1);
+	}
+	if (localStorage.getItem("contador_bob")==null){
+		cont = 0;
+	}else{
+		cont = localStorage.getItem("contador_bob");
+	}
+	// FECHA Y HORA						
+		var fecha = new Date();
+		dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();
+		hora = fecha.getHours();
+		minutos = fecha.getMinutes();	
+		if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);
+		fecha_ingreso = String(annio+"-"+mes+"-"+dia);
+	// FECHA Y HORA
+
+	$(function(){	
+
+		if(localStorage.getItem('turno_bob')==null){
+			window.location = 'lecturamenu.html';
+		}
+		
+	    $(".decimal").keypress(function(evt){
+			if($(this).val().length==2){
+		        return false;
+		    }
+	    });
+
+	    if (localStorage.getItem("lis_parcial_bob")!=null || localStorage.getItem("tipo_lec_2_bob")=="parcial"){
+			$('#mensajitos').remove();
+			$('#mensajes').append("<div id='mensajitos' ></div>");
+			$('#mensajitos').append("<h2 >Necesita subir lectura parcial.</h2>");
+			$('#modalbox').click();
+		}
+
+	    // Tipo bobinadoras
+		array_tb = JSON.parse(localStorage.getItem("tipo_bobinadoras"));
+		for(var i=0;i<array_tb.length;i++){
+			$('#maquina').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
+		}
+
+	    // FECHA Y TURNO
+	    my_array = JSON.parse(localStorage.getItem('turnos'));
+	    hora_turno = my_array[2].hora_inicio;
+	    hora_max = (parseInt(hora_turno.substring(0,2),10)-1);
+    	if((localStorage.getItem('turno_bob')=="2" || localStorage.getItem('turno_bob')=="3") && hora < hora_max){
+    		fecha.setDate(fecha.getDate()-1);
+    	}
+    	dia = fecha.getDate();
+		mes = fecha.getMonth()+1;
+		annio = fecha.getFullYear();	
+    	if(dia<10) dia = String("0"+dia);
+		if(mes<10) mes = String("0"+mes);	
+		if(hora<10) hora = String("0"+hora);
+		if(minutos<10) minutos = String("0"+minutos);
+		fecha_lec_bob = String(annio+"-"+mes+"-"+dia);
+		hora_ing_bob = String(hora+":"+minutos+":"+"00");
+	    // FECHA Y TURNO
+	
+		$('#error-kgs').css('display','none');
+		$('#error-purgador').css('display','none');
+		$('#error-empalmes').css('display','none');
+
+		function MyFunction(){
+			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_bob"))[0].nombre);
+			$('#unidad').val(JSON.parse(localStorage.getItem("maquinas_bob"))[0].unidad);
+		}
+		if(len_lecs_bob == 0){
+			localStorage.setItem("contador_bob",0);
+			cont=0;
+			MyFunction();
+		}else if((len_lecs_bob % JSON.parse(localStorage.getItem("maquinas_bob")).length)==0){
+			localStorage.setItem("contador_bob",0);		
+			cont = localStorage.getItem("contador_bob");	
+			cont=0;
+			MyFunction();
+		}else{
+			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_bob"))[cont].nombre);
+			$('#unidad').val(JSON.parse(localStorage.getItem("maquinas_bob"))[cont].unidad);
+		}
+
+		function Valida(){
+			var rpta=1;
+			if ($('#kgs_1').val()==""){
+				rpta = 0;
+				$('#error-kgs').show().delay(5000).fadeOut();
+			}
+			if ($('#purgador_1').val()==""){
+				rpta = 0;
+				$('#error-purgador').show().delay(5000).fadeOut();
+			}
+			if ($('#empalmes_1').val()==""){
+				rpta = 0;
+				$('#error-empalmes').show().delay(5000).fadeOut();
+			}
+			return rpta;
+		}
+
+		$('form[name=form_lectura]').on('submit',function(evt){
+			evt.preventDefault();			
+			if(Valida()==1){
+				if($('#kgs_2').val()==""){
+					kgs = $('#kgs_1').val()+".0";
+				}else{
+					kgs = $('#kgs_1').val()+"."+$('#kgs_2').val();
+				}
+				if($('#purgador_2').val()==""){
+					purgador = $('#purgador_1').val()+".0";
+				}else{
+					purgador = $('#purgador_1').val()+"."+$('#purgador_2').val();
+				}
+				if($('#empalmes_2').val()==""){
+					empalmes = $('#empalmes_1').val()+".0";
+				}else{
+					empalmes = $('#empalmes_1').val()+"."+$('#empalmes_2').val();
+				}
+				Json_lec_bob = {
+					"id" : localStorage.getItem("id_bob"),
+					"turno" : localStorage.getItem("turno_bob"),
+					"maquina" : $('#maquina').val(),
+					"unidad" : $('#unidad').val(),
+					"kgs" : kgs,
+					"purgador" : purgador,
+					"empalmes" : empalmes,
+					"fecha" : fecha_lec_bob,
+					"hora" : hora_ing_bob,
+					"tipo_lectura" :"NORMAL",
+					"fecha_ingreso" : fecha_ingreso,
+				}
+				array_bob.push(Json_lec_bob);
+				var jsontostring = JSON.stringify(array_bob);
+				cont++;
+				id = parseInt(localStorage.getItem("id_bob"),10);
+				localStorage.setItem('id_bob',id+1);
+				localStorage.setItem("contador_bob", cont);
+				localStorage.setItem("lis_lec_bob", jsontostring);
+				if(((len_lecs_bob+1) % JSON.parse(localStorage.getItem("maquinas_bob")).length)==0){
+					$('#mensajitos').remove();
+					$('#mensajes').append("<div id='mensajitos' ></div>");
+					$('#mensajitos').append("<h2 >La ruta ha terminado.</h2>");
+					$('#modalbox').click();
+					localStorage.removeItem('turno_bob');
+				}else{
+					window.location = 'lectura2.html';					
+				}
+			}			
+		});
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Ingresar datos</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+	<div class="text-right">
+		<a href="index.html" class="icono-menu" >
+			MENU <span class="glyphicon glyphicon-align-justify" ></span>
+		</a>
+	</div>
+	<div class="alert alert-success" role="alert">
+		<h3>
+			SE MODIFICÓ CON EXITO.
+		</h3>
+	</div>
+	<form class="form-horizontal my_form" role="form" name="form_lectura_update" action="" method="POST" >
+		<input type="hidden" id="tipo_lectura_update"/>
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="maquina_upd" class="control-label label_grande">MAQUINA</label>
+		   	</div>
+	   		<div class="col-md-4"></div>
+			<div class="col-sm-1 col-md-4">
+			      <input type="text" class="form-control input_grande" id="maquina_upd" name="maquina_upd" disabled >
+			</div>
+		</div>
+		<div class="form-group">
+		   	<div class="text-center">
+		   		<label for="unidad_upd" class="control-label label_grande">UNIDAD</label>
+		   	</div>
+	   		<div class="col-md-4"></div>
+			<div class="col-sm-1 col-md-4">
+			      <input type="text" class="form-control input_grande" id="unidad_upd" name="unidad_upd" disabled >
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="kgs_upd" class="control-label label_grande">KGS</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      	<input type="number" class="form-control input_grande" id="kgs_upd" name="kgs_upd" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-kgs" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="purgador_upd" class="control-label label_grande">CORTES PURGADOR</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      	<input type="number" class="form-control input_grande" id="purgador_upd" name="purgador_upd" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-purgador" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+			<div class="text-center">
+		   		<label for="empalmes_upd" class="control-label label_grande">EMPALMES</label>
+		   	</div>
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      <input type="number" class="form-control input_grande" id="empalmes_upd" name="empalmes_upd" autocomplete="off" >
+		    </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-empalmes" role="alert">
+	      		<h2>COMPLETAR!</h2>
+	      	</div>
+	    </div>
+		<div class="form-group">
+		    <div class="col-xs-offset-1 col-sm-offset-3">
+		      <button type="submit" class="btn btn-primary boton">GUARDAR</button>
+		      <a href="lecturaupdate.html" class="btn btn-danger boton" >ATRAS</a>
+		    </div>
+		</div>
+	</form>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js" ></script>
+<script>
+	id = localStorage.getItem('id_bob_upd');
+	$(function(){
+		$('.alert-danger').css('display','none');
+		$('.alert-success').css('display','none');
+		if (localStorage.getItem('lis_lec_bob')!=null){
+			bob_upd = JSON.parse(localStorage.getItem('lis_lec_bob'));
+			for(var i=0;i<bob_upd.length;i++){
+				if(bob_upd[i]['id']==id){
+					$('#tipo_lectura_update').val(bob_upd[i]['tipo_lectura']);
+					$('#maquina_upd').val(bob_upd[i]['maquina']);
+					$('#unidad_upd').val(bob_upd[i]['unidad']);
+					$('#kgs_upd').val(bob_upd[i]['kgs']);
+					$('#purgador_upd').val(bob_upd[i]['purgador']);
+					$('#empalmes_upd').val(bob_upd[i]['empalmes']);
+				}
+			}
+		}
+
+		if (localStorage.getItem('lis_parcial_bob')!=null){
+			lp = JSON.parse(localStorage.getItem('lis_parcial_bob'));
+			for(var i=0;i<lp.length;i++){
+				if(lp[i]['id']==id){
+					$('#tipo_lectura_update').val(lp[i]['tipo_lectura']);
+					$('#maquina_upd').val(lp[i]['maquina']);
+					$('#unidad_upd').val(lp[i]['unidad']);
+					$('#kgs_upd').val(lp[i]['kgs']);
+					$('#purgador_upd').val(lp[i]['purgador']);
+					$('#empalmes_upd').val(lp[i]['empalmes']);
+				}
+			}
+		}
+
+		$('form[name=form_lectura_update]').on('submit',function(event){
+			event.preventDefault();
+			if(Valida() == 0 ){
+				if($('#tipo_lectura_update').val()!="PARCIAL" && localStorage.getItem('lis_lec_bob')!=null ){
+					lis_bob = JSON.parse(localStorage.getItem('lis_lec_bob'));
+					for(var i=0;i<lis_bob.length;i++){
+						if(lis_bob[i]['id']==id){
+							lis_bob[i]['kgs'] = $('#kgs_upd').val();
+							lis_bob[i]['purgador'] = $('#purgador_upd').val();
+							lis_bob[i]['empalmes'] = $('#empalmes_upd').val();
+							myjson_string = JSON.stringify(lis_bob);
+							localStorage.setItem('lis_lec_bob',myjson_string);
+							$('.alert-success').show().delay(5000).fadeOut();
+							localStorage.removeItem('id_bob_upd');
+							break;
+						}
+					}
+				}else{
+					lp = JSON.parse(localStorage.getItem('lis_parcial_bob'));
+					for(var i=0;i<lp.length;i++){
+						if(lp[i]['id']==id){
+							lp[i]['kgs'] = $('#kgs_upd').val();
+							lp[i]['purgador'] = $('#purgador_upd').val();
+							lp[i]['empalmes'] = $('#empalmes_upd').val();
+							myjson_string = JSON.stringify(lp);
+							localStorage.setItem('lis_parcial_bob',myjson_string);
+							$('.alert-success').show().delay(5000).fadeOut();
+							localStorage.removeItem('id_bob_upd');
+							break;
+						}
+					}
+				}
+			}
+		});
+
+		function Valida(){
+			var rpta=0;
+			if ($('#kgs_upd').val()==""){
+				rpta = 1;
+				$('#error-kgs').show().delay(5000).fadeOut();
+			}
+			if ($('#purgador_upd').val()==""){
+				rpta = 1;
+				$('#error-purgador').show().delay(5000).fadeOut();
+			}
+			if ($('#empalmes_upd').val()==""){
+				rpta = 1;
+				$('#error-empalmes').show().delay(5000).fadeOut();
+			}
+			return rpta;
+		}
+
+	})
+</script>
+</body>
+</html>

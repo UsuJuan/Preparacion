@@ -69,12 +69,12 @@
 	
 		if(localStorage.getItem("lis_lec_pre")!=null){
 			if((JSON.parse(localStorage.getItem("lis_lec_pre")).length % JSON.parse(localStorage.getItem("maquinas_pre")).length)!=0){
-					$('#mensajitos').append("<h4 >Completar ruta de lectura.</h4>");
+					$('#mensajitos').append("<h2 >Completar ruta de lectura.</h2>");
 					$('#modalbox').click();
 				}
 		}else{
 			if(localStorage.getItem("lis_parcial_pre")==null){
-				$('#mensajitos').append("<h4 >Completar ruta de lectura.</h4>");
+				$('#mensajitos').append("<h2 >Completar ruta de lectura.</h2>");
 				$('#modalbox').click();
 			}
 		}
@@ -124,8 +124,8 @@
 				crossDomain: true,
 				data: {					
 					'lecturas': localStorage.getItem("lis_lec_pre"),
-					/*'cambios': localStorage.getItem("lis_cambios_pre"),
-					'paros': localStorage.getItem("lis_paros_pre"),*/
+					'cambios': localStorage.getItem("lis_cambios_pre"),
+					'paros': localStorage.getItem("lis_paros_pre"),
 				},
 				dataType: 'json',		
 			})
@@ -143,7 +143,7 @@
 				$(".modal-body").append('<div class="alert alert-success text-center" id="mensajes" role="alert"><h3>Datos subidos con exito.</h3></div>');
 				$('#modalbox').click();
 			});
-			localStorage.removeItem('lis_paros_pre');
+			/*localStorage.removeItem('lis_paros_pre');
 			localStorage.removeItem('lis_paros_ind_pre');
 			localStorage.removeItem('lis_cambios_pre');
 			localStorage.removeItem('lis_parcial_pre');
@@ -151,7 +151,7 @@
 			localStorage.removeItem('id_cam_pre');
 			localStorage.removeItem('id_pre');
 			localStorage.removeItem('contador_pre');
-			localStorage.removeItem('paro_pre');
+			localStorage.removeItem('paro_pre');*/
       }
 	})
 	</script>

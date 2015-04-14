@@ -76,15 +76,18 @@
 			<div class="text-center">
 		   		<label for="nombre_1" class="control-label label_grande">NOMBRE</label>
 		   	</div>
-		   	<div class="col-md-3"></div>
-		   	<div class="col-sm-10 col-md-6">
+			<div class="col-sm-1 col-xs-1"></div>
+		   	<div class="col-sm-4 col-xs-4">
+		   		<select id="ini_nombre_1" class="form-control input_grande" ></select>
+		    </div>
+		   	<div class="col-sm-5 col-xs-5">
 		      	<input type="number" class="form-control input_grande" id="nombre_1" name="nombre_1" >
 		    </div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre_1" role="alert">
-	      		<h2>COMPLETAR!</h2>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre1" role="alert">
+	      		<h2>ERROR!</h2>
 	      	</div>
 	    </div>
 		<div id="segunda_maquina">
@@ -107,14 +110,17 @@
 				<div class="text-center">
 			   		<label for="nombre_2" class="control-label label_grande">NOMBRE</label>
 			   	</div>
-			   	<div class="col-md-3"></div>
-			   	<div class="col-sm-10 col-md-6">
+				<div class="col-sm-1 col-xs-1"></div>
+			   	<div class="col-sm-4 col-xs-4">
+			   		<select id="ini_nombre_2" class="form-control input_grande" ></select>
+			    </div>
+			   	<div class="col-sm-5 col-xs-5">
 			      	<input type="number" class="form-control input_grande" id="nombre_2" name="nombre_2" >
 			    </div>
 			</div>
 			<div class="row">
 				<div class="col-md-4"></div>
-		    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre_2" role="alert">
+		    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre2" role="alert">
 		      		<h2>COMPLETAR!</h2>
 		      	</div>
 		    </div>
@@ -176,22 +182,6 @@
 			      	</div>
 			    </div>
 		    </div>
-		</div>
-		<div id="husos" >
-			<div class="form-group">
-			   	<div class="text-center">	
-			   		<label for="puestos" class="control-label label_grande">PUESTOS</label>
-			   	</div>
-			   	<div class="col-md-3"></div>
-			    <div class="col-sm-10 col-md-6">
-			      <input type="number" class="form-control input_grande" id="puestos" name="puestos" autocomplete="off" >
-			    </div>
-			    <div class="row">
-			    <div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-puestos" role="alert">
-			      		<h2>ERROR!</h2>
-			      	</div>
-			    </div>
-			</div>
 		</div>
 		<div class="form-group">
 		    <div class="text-center">	
@@ -258,7 +248,7 @@
 	// ID
 
 	$(function(){
-		// Tipo bobinadoras
+		// Tipo preparacion
 		array_tb = JSON.parse(localStorage.getItem("tipo_preparacion"));
 		for(var i=0;i<array_tb.length;i++){
 			$('#maquina_uno').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
@@ -274,15 +264,9 @@
 		$('#mes').val(mes);
 		$('#annio').val(annio_2);
 
-		$(".decimal").keypress(function(evt){
-			if($(this).val().length==2){
-		        return false;
-		    }
-	    });
-
 	    $('.alert-danger').css('display','none');
 		// PARO EN BLOQUE
-		function SacarMaquinas(o1,o2,hi,hf,fecha){
+		/*function SacarMaquinas(o1,o2,hi,hf,fecha){
 			array01 = JSON.parse(localStorage.getItem('maquinas_pre'));
 			var array_p = [];
 			if(localStorage.getItem("lis_paros_ind_pre")!=null){
@@ -293,7 +277,7 @@
 					json_individual = {
 						"id" : localStorage.getItem("id_paro_pre"),
 						"maquina" : array01[i].nombre,
-						"unidad" : array01[i].unidad,
+						"nombre" : array01[i].nombre,
 						"hora_inicio" : hi,
 						"hora_fin" : hf,
 						"fecha" : fecha,
@@ -303,7 +287,7 @@
 				}
 			}
 			localStorage.setItem("lis_paros_ind_pre",JSON.stringify(array_p));
-		}
+		}*/
 		// PARO EN BLOQUE
 
 		$('#cancelar').on('click',function(){
@@ -328,20 +312,50 @@
 		        $('#minutos_fin').focus();
 		    }
 		});
-
+		/* COMBOS LETRA INICIAL MAQUINA */
+		ini_m = JSON.parse(localStorage.getItem('maquinas_pre_inicial'));
+		for(var i=0;i<ini_m.length;i++){
+			id_maq = $('#maquina_uno').val();
+			if(ini_m[i].tipo == id_maq){
+				$('#ini_nombre_1').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+			}			
+		}
+		$("#maquina_uno").change(function() {
+			id_maq = $('#maquina_uno').val();
+			$('#ini_nombre_1 option').remove();
+		 	for(var i=0;i<ini_m.length;i++){
+				if(ini_m[i].tipo == id_maq){
+					$('#ini_nombre_1').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+				}			
+			}
+		});
+		for(var i=0;i<ini_m.length;i++){
+			id_maq = $('#maquina_dos').val();
+			if(ini_m[i].tipo == id_maq){
+				$('#ini_nombre_2').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+			}			
+		}
+		$("#maquina_dos").change(function() {
+			id_maq = $('#maquina_dos').val();
+			$('#ini_nombre_2 option').remove();
+		 	for(var i=0;i<ini_m.length;i++){
+				if(ini_m[i].tipo == id_maq){
+					$('#ini_nombre_2').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+				}			
+			}
+		});
+		/* COMBOS LETRA INICIAL MAQUINA */
 		if(localStorage.getItem("paro_pre")=="1"){
 			$('#segunda_maquina').css('display', 'block');
-			$('#husos').css('display', 'none');
 		}else{
 			$('#segunda_maquina').css('display', 'none');
-			$('#husos').css('display', 'block');
 		}
 		function Agregar_Maquinas(){
 			tp = parseInt(localStorage.getItem("paro_pre"));
 			if (tp==1) {
-				ini = HoraIniTwoPto+":00";
+				/*ini = HoraIniTwoPto+":00";
 				fin = HoraFinTwoPto+":00";
-				SacarMaquinas(orden1,orden2,ini,fin,fecha_paro);
+				SacarMaquinas(orden1,orden2,ini,fin,fecha_paro);*/
 			}else{
 				if(localStorage.getItem("lis_paros_ind_pre")!=null){
 					array02 = JSON.parse(localStorage.getItem("lis_paros_ind_pre"));
@@ -349,7 +363,7 @@
 				json_individual = {
 					"id" : localStorage.getItem("id_paro_pre"),
 					"maquina" : $('#maquina_uno').val(),
-					"unidad" : unidad,
+					"nombre" : nombre,
 					"hora_inicio" : HoraIniTwoPto+":00",
 					"hora_fin" : HoraFinTwoPto+":00",
 					"fecha" : fecha_paro,
@@ -370,27 +384,27 @@
 		});		
 		$('form[name=form_paros]').on('submit',function(evt){	
 			evt.preventDefault();
-			unidad = $('#unidad_uno_1').val()+"."+$('#unidad_uno_2').val();
-			unidad2 = $('#unidad_dos_1').val()+"."+$('#unidad_dos_2').val();
+			nombre = $('#ini_nombre_1').val()+$('#nombre_1').val();
+			nombre2 = $('#ini_nombre_2').val()+$('#nombre_2').val();
 			bloque = 1;
+			fecha_paro = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
 			if(localStorage.getItem("paro_pre")==1){
-				if($('#unidad_dos').val()!=""){
+				if($('#nombre_2').val()!=""){
 					bloque = 1;
 				}else{
 					bloque = 0;
 				}
 			}
-			if(valida(unidad,unidad2)==1 && bloque==1){
-				fecha_paro = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
+			if(valida(nombre,nombre2,fecha_paro)==1 && bloque==1){
 				HoraIniTwoPto = $('#hora_inicio').val()+":"+$('#minutos_inicio').val();				
 				HoraFinTwoPto = $('#hora_fin').val()+":"+$('#minutos_fin').val();
 				MyJson_paros = {
 					"id" : localStorage.getItem("id_paro_pre"),
 					"tipo_paro" : localStorage.getItem("paro_pre"),
 					"maquina_uno" : $('#maquina_uno').val(),
-					"unidad_uno" : unidad,
+					"nombre_uno" : nombre,
 					"maquina_dos" : $('#maquina_dos').val(),
-					"unidad_dos" : unidad2,
+					"nombre_dos" : nombre2,
 					"hora_inicio" : HoraIniTwoPto+":00",
 					"hora_fin" : HoraFinTwoPto+":00",
 					"puestos" : $('#puestos').val(),
@@ -407,14 +421,14 @@
 				if (tp==2 && b!=null) {
 					for (i=0;i<b.length;i++){
 						if(fecha_paro == b[i]['fecha']){
-							if($('#maquina_uno').val() == b[i]['maquina'] && unidad == b[i]['unidad'] ){
+							if($('#maquina_uno').val() == b[i]['maquina'] && nombre == b[i]['nombre'] ){
 								entrada = 1;
 								if(indicator==0){
 									$('#modalbox').click();
 									indicator = 1;
 									$('#mensajes').append("<div id='mensajitos' ></div>");
 								}						
-								$('#mensajitos').append("<h5 >La maquina "+b[i]['maquina']+" "+b[i]['unidad']+" ya tiene paro en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h5>");
+								$('#mensajitos').append("<h3 >Esta maquina ya tiene paro en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h3>");
 							}
 						}
 					}
@@ -422,14 +436,14 @@
 				// EN BLOQUE
 				if (tp==1 && b!=null) {
 					for (i=0;i<b.length;i++){
-						if($('#maquina_uno').val() == b[i]['maquina'] && unidad == b[i]['unidad'] || $('#maquina_dos').val() == b[i]['maquina'] && unidad2 == b[i]['unidad'] && fecha_paro == b[i]['fecha']){
+						if($('#maquina_uno').val() == b[i]['maquina'] && nombre == b[i]['nombre'] || $('#maquina_dos').val() == b[i]['maquina'] && nombre2 == b[i]['nombre'] && fecha_paro == b[i]['fecha']){
 							entrada = 1;
 							if(indicator==0){
 								$('#modalbox').click();
 								indicator = 1;
 								$('#mensajes').append("<div id='mensajitos' ></div>");
 							}						
-							$('#mensajitos').append("<h5 >La maquina "+b[i]['maquina']+" "+b[i]['unidad']+" ya tiene paro en bloque en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h5>");
+							$('#mensajitos').append("<h3 >Esta maquina ya tiene paro en bloque en este día, su hora de inicio es: "+b[i]['hora_inicio']+" y su hora fin es: "+b[i]['hora_fin']+"</h3>");
 						}
 					}
 				}
@@ -445,75 +459,69 @@
 					window.location = 'paro1.html';
 				}	
 			}
-			function valida(unidad,u2){
+			function valida(nombre,nombre2,fechita){
 				var rpta = 1;
 				array_maquinas = JSON.parse(localStorage.getItem('maquinas_pre'));
 				if(localStorage.getItem("paro_pre")==1){
-					if($('#unidad_uno_1').val()=="" || $('#unidad_dos_1').val()==""){
+					/*if($('#nombre_uno_1').val()=="" || $('#nombre_dos_1').val()==""){
 						rpta = 0;
-						$('#error-unidad1').show().delay(5000).fadeOut();
-						$('#error-unidad2').show().delay(5000).fadeOut();
+						$('#error-nombre1').show().delay(5000).fadeOut();
+						$('#error-nombre2').show().delay(5000).fadeOut();
 					}else{						
 						for(var i=0;i<array_maquinas.length;i++){
-							if(array_maquinas[i].nombre==parseInt($('#maquina_uno').val(),10) && array_maquinas[i].unidad==unidad){
+							if(array_maquinas[i].nombre==parseInt($('#maquina_uno').val(),10) && array_maquinas[i].nombre==nombre){
 								orden1 = array_maquinas[i].orden_paro;
 							}
-							if(array_maquinas[i].nombre==parseInt($('#maquina_dos').val(),10) && array_maquinas[i].unidad==u2){
+							if(array_maquinas[i].nombre==parseInt($('#maquina_dos').val(),10) && array_maquinas[i].nombre==nombre2){
 								orden2 = array_maquinas[i].orden_paro;
 							}
 						}
 						if (orden1 == 0){
 							rpta = 0;
-							$('#error-unidad1').show().delay(5000).fadeOut();
+							$('#error-nombre1').show().delay(5000).fadeOut();
 						}else if (orden2 == 0){
 							rpta = 0;
-							$('#error-unidad2').show().delay(5000).fadeOut();
+							$('#error-nombre2').show().delay(5000).fadeOut();
 						}else if(orden2 <= orden1){
 							rpta = 0;
-							$('#error-unidad2').show().delay(5000).fadeOut();
+							$('#error-nombre2').show().delay(5000).fadeOut();
 						}
-					}
+					}*/
 				}else{
 					var flag = 0;
-					var puestos = 0;
 					for(var i=0;i<array_maquinas.length;i++){
-						if(array_maquinas[i].nombre==$('#maquina_uno').val() && array_maquinas[i].unidad==unidad){
+						if(array_maquinas[i].tipomaquina==$('#maquina_uno').val() && array_maquinas[i].nombre==nombre){
 							flag = 1;
-							puestos = array_maquinas[i].n_husos; 
 						}
 					}
 					if (flag!=1){
-						$('#error-unidad1').show().delay(5000).fadeOut();
+						$('#error-nombre1').show().delay(5000).fadeOut();
 						rpta = 0;
 					}else{
 						rpta = 1;
-					}
-					if($('#puestos').val()=="" || parseInt($('#puestos').val(),10)>puestos){
-						rpta = 0;
-						$('#error-puestos').show().delay(5000).fadeOut();
 					}
 				}
 				if($('#motivo_paro').val()==""){
 					rpta = 0;
 					$('#error-motivo').show().delay(5000).fadeOut();
-				}
-				if($('#dia').val().length!=2 || parseInt($('#dia').val())>31){
-					rpta = 0;
-					$('#error-dia').show().delay(5000).fadeOut();
-				}
-				if($('#mes').val().length!=2 || parseInt($('#mes').val())>12){
-					rpta = 0;
-					$('#error-mes').show().delay(5000).fadeOut();
-				}
-				a = parseInt($('#annio').val())
-				b = parseInt(annio_2)
-				if($('#annio').val().length!=2 || (a!=b-1 && a!=b && a!=b+1)){
-					rpta = 0;
-					$('#error-annio').show().delay(5000).fadeOut();
-				}
+				}				
 				if($('#hora_inicio').val().length!=2 || parseInt($('#hora_inicio').val())>23){
 					rpta = 0;
 					$('#error-hora-inicio').show().delay(5000).fadeOut();
+				}
+				var d = new Date();
+				d.setFullYear(fechita.substring(0,4),fechita.substring(5,7)-1,fechita.substring(8,10));
+				if(d.getMonth() != fechita.substring(5,7)-1 || d.getDate() != fechita.substring(8,10)){
+					rpta = 0;
+					console.log("Fecha no válida.");
+					$('#error-fecha').show().delay(5000).fadeOut();
+				}else{
+					a = parseInt($('#annio').val(),10)
+					b = parseInt(annio_2,10)
+					if($('#annio').val().length!=2 || (a!=b-1 && a!=b && a!=b+1)){
+						rpta = 0;
+						$('#error-annio').show().delay(5000).fadeOut();
+					}
 				}
 				if($('#minutos_inicio').val().length!=2 || parseInt($('#minutos_inicio').val())>59){
 					rpta = 0;

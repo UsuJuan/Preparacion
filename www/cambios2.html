@@ -20,9 +20,7 @@
 			        <h4 class="modal-title alert alert-warning" id="myModalLabel">Mensaje</h4>
 		      </div>
 		      <div class="modal-body">
-		      		<div class="alert alert-info" id="mensajes" role="alert">
-
-		      		</div>
+		      		<div class="alert alert-info" id="mensajes" role="alert"></div>
 		      </div>
 		      <div class="modal-footer text-left">
 			        <button type="button" data-dismiss="modal" id="conservar" class="btn-lg btn-primary" >Agregar</button>
@@ -76,15 +74,18 @@
 			<div class="text-center">
 		   		<label for="nombre" class="control-label label_grande">NOMBRE</label>
 		   	</div>
-		   	<div class="col-md-3"></div>
-		   	<div class="col-sm-10 col-md-6">
+			<div class="col-sm-1 col-xs-1"></div>
+		   	<div class="col-sm-4 col-xs-4">
+		   		<select id="ini_nombre" class="form-control input_grande" ></select>
+		    </div>
+		   	<div class="col-sm-5 col-xs-5">
 		      	<input type="number" class="form-control input_grande" id="nombre" name="nombre" >
 		    </div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
 	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre" role="alert">
-	      		<h2>COMPLETAR!</h2>
+	      		<h2>ERROR!</h2>
 	      	</div>
 	    </div>
 		<div class="form-group">
@@ -117,34 +118,14 @@
 		</div>
 		<div class="form-group">
 			<div class="text-center">
-		   		<label for="tipo_torsion" class="control-label label_grande">TIPO TORSION</label>
+		   		<label for="vp" class="control-label label_grande">VP</label>
 		   	</div>
 		   	<div class="col-md-3"></div>
 		    <div class="col-sm-10 col-md-6">
-		      	<select name="tipo_torsion" id="tipo_torsion" class="form-control input_grande" required="required" >
-				</select>
-		    </div>
-		</div>		
-		<div class="form-group">
-			<div class="text-center">
-		   		<label for="tipo_proceso" class="control-label label_grande">TIPO PROCESO</label>
-		   	</div>
-		   	<div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      	<select name="tipo_proceso" id="tipo_proceso" class="form-control input_grande" required="required" >
-				</select>
-		    </div>
-		</div>
-		<div class="form-group">
-			<div class="text-center">
-		   		<label for="rpm" class="control-label label_grande">RPM</label>
-		   	</div>
-		   	<div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      <input type="number" class="form-control input_grande numero" id="rpm" name="rpm" autocomplete="off" >
+		      <input type="number" class="form-control input_grande numero" id="vp" name="vp" autocomplete="off" >
 		    </div>
 		    <div class="row">
-		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-rpm" role="alert">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-vp" role="alert">
 		      		<h2>COMPLETAR!</h2>
 		      	</div>
 		    </div>
@@ -241,7 +222,7 @@
 	// FECHA Y HORA
 
 	$(function(){
-		// Tipo bobinadoras
+		// Tipo de preparacion
 		array_tb = JSON.parse(localStorage.getItem("tipo_preparacion"));
 		for(var i=0;i<array_tb.length;i++){
 			$('#maquina').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
@@ -251,18 +232,6 @@
 		$('#mes').val(mes);
 		$('#annio').val(annio_2);
 		$('.alert-danger').css('display','none');
-
-		$(".decimal").keypress(function(evt){
-			if($(this).val().length==2){
-		        return false;
-		    }
-	    }); 
-
-	    $(".dunidad").keypress(function(evt){
-			if($(this).val().length==1){
-		        return false;
-		    }
-	    });
 
 	    $("#hora").keyup(function(event){
 		    if($(this).val().length==2){
@@ -281,9 +250,7 @@
 		});
 
 		$('#conservar').on('click',function(){
-			// debugger;
 			array.push(Json_cambios_pre);
-			// debugger;
 			var jsontostring = JSON.stringify(array);
 			localStorage.setItem("lis_cambios_pre", jsontostring);
 			$('.alert-success').show().delay(5000).fadeOut();
@@ -291,38 +258,40 @@
 			window.location = 'cambiomenu.html';
 		});	
 
+		/* COMBOS LETRA INICIAL MAQUINA */
+		ini_m = JSON.parse(localStorage.getItem('maquinas_pre_inicial'));
+		for(var i=0;i<ini_m.length;i++){
+			id_maq = $('#maquina').val();
+			if(ini_m[i].tipo == id_maq){
+				$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+			}			
+		}
+		$("#maquina").change(function() {
+			id_maq = $('#maquina').val();
+			$('#ini_nombre option').remove();
+		 	for(var i=0;i<ini_m.length;i++){
+				if(ini_m[i].tipo == id_maq){
+					$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+				}			
+			}
+		});
+		/* COMBOS LETRA INICIAL MAQUINA */
+
 		$('form[name=form_cambios]').on('submit',function(evt){
 			evt.preventDefault();	
 			fec = "20"+$('#annio').val()+"-"+$('#mes').val()+"-"+$('#dia').val();
-			unidad = $('#unidad_1').val()+"."+$('#unidad_2').val();		
-			if(valida(unidad,fec)==1){
-				if($('#kgs_2').val()==""){
-					kgs = $('#kgs_1').val()+".0";
-				}else{
-					kgs = $('#kgs_1').val()+"."+$('#kgs_2').val();
-				}
-				if($('#purgador_2').val()==""){
-					purgador = $('#purgador_1').val()+".0";
-				}else{
-					purgador = $('#purgador_1').val()+"."+$('#purgador_2').val();
-				}
-				if($('#empalmes_2').val()==""){
-					empalmes = $('#empalmes_1').val()+".0";
-				}else{
-					empalmes = $('#empalmes_1').val()+"."+$('#empalmes_2').val();
-				}
+			nombre = $('#ini_nombre').val()+$('#nombre').val();		
+			if(valida(nombre,fec)==1){
 				HoraTwoPto = $('#hora').val()+":"+$('#minutos').val();
 				Json_cambios_pre = {
 					"id" : localStorage.getItem("id_cam_pre"),
 					"maquina" : $('#maquina').val(),
-					"unidad" : unidad,
-					"titulo" : $('#titulo').val(),
-					"codigo" : $('#codigo').val(),
+					"nombre" : nombre,
+					"titulo" : $('#titulo').val(),					
 					"vp" : $('#vp').val(),
+					"torsion" : $('#torsion').val(),
+					"contador" : $('#contador').val(),
 					"linea" : $("#linea").val(),
-					"kgs" : kgs,
-					"purgador" : purgador,
-					"empalmes" : empalmes,
 					"hora_cambio" : HoraTwoPto+":00",
 					"fecha" : fec,
 					"fecha_ingreso":fecha_string,
@@ -335,14 +304,14 @@
 				if (ac!=null) {
 					for (i=0;i<ac.length;i++){
 						if(fec == ac[i]['fecha']){
-							if($('#maquina').val() == ac[i]['maquina'] && unidad == ac[i]['unidad']){
+							if($('#maquina').val() == ac[i]['maquina'] && nombre == ac[i]['nombre']){
 								entrada = 1;
 								if(indicator==0){
 									$('#modalbox').click();
 									indicator = 1;
 									$('#mensajes').append("<div id='mensajitos' ></div>");
 								}						
-								$('#mensajitos').append("<h5 >La maquina "+ac[i]['maquina']+" ya tiene cambio en este día, su hora es: "+ac[i]['hora_cambio']+".</h5>");
+								$('#mensajitos').append("<h5 >Esta maquina ya tiene cambio en este día, su hora es: "+ac[i]['hora_cambio']+".</h5>");
 							}
 						}
 					}
@@ -357,21 +326,21 @@
 				}
 			}
 
-			function valida(unidad,fec){
+			function valida(nombre,fec){
 				var rpta = 1;				
-				if($('#unidad_1').val()==""){
+				if($('#nombre').val()==""){
 					rpta = 0;
-					$('#error-unidad').show().delay(5000).fadeOut();
+					$('#error-nombre').show().delay(5000).fadeOut();
 				}else{
 					array_maquinas = JSON.parse(localStorage.getItem('maquinas_pre'));
 					var flag = 0;
 					for(var i=0;i<array_maquinas.length;i++){
-						if(array_maquinas[i].nombre==$('#maquina').val() && array_maquinas[i].unidad==unidad){
+						if(array_maquinas[i].tipomaquina==$('#maquina').val() && array_maquinas[i].nombre==nombre){
 							flag = 1;
 						}
 					}
 					if (flag!=1){
-						$('#error-unidad').show().delay(5000).fadeOut();
+						$('#error-nombre').show().delay(5000).fadeOut();
 						rpta = 0;
 					}else{
 						rpta = 1;
@@ -381,29 +350,17 @@
 					rpta = 0;
 					$('#error-titulo').show().delay(5000).fadeOut();
 				}
-				if($('#codigo').val()==""){
-					rpta = 0;
-					$('#error-codigo').show().delay(5000).fadeOut();
-				}
 				if($('#vp').val()==""){
 					rpta = 0;
 					$('#error-vp').show().delay(5000).fadeOut();
 				}
-				if($('#linea').val()==""){
+				if($('#torsion').val()==""){
 					rpta = 0;
-					$('#error-linea').show().delay(5000).fadeOut();
+					$('#error-torsion').show().delay(5000).fadeOut();
 				}
-				if($('#kgs_1').val()==""){
+				if($('#contador').val()==""){
 					rpta = 0;
-					$('#error-kgs').show().delay(5000).fadeOut();
-				}
-				if($('#purgador_1').val()==""){
-					rpta = 0;
-					$('#error-purgador').show().delay(5000).fadeOut();
-				}
-				if($('#empalmes_1').val()==""){
-					rpta = 0;
-					$('#error-empalmes').show().delay(5000).fadeOut();
+					$('#error-contador').show().delay(5000).fadeOut();
 				}
 				if($('#hora').val().length!=2 || parseInt($('#hora').val())>23){
 					rpta = 0;

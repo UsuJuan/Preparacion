@@ -8,13 +8,7 @@
 	<style>
 		body{
 			font-size: 18px;
-		}
-		.search
-		{
-			color: white;
-			font-size: 20px;
-			padding-right: 8px;
-		}			
+		}		
 		.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
 			background-color: #BEBEBE;
 		}
@@ -42,13 +36,6 @@
 			.btn{
 				font-size: 1.5em;
 			}
-			.search{
-				font-size: 1.5em;
-			}
-			input#search {
-				height: 1.2em;
-				font-size: 4em;
-			}
 			form.navbar-form.navbar-left {
 				margin-left: 0;
 			}
@@ -72,13 +59,7 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	      	<form class="navbar-form navbar-left" role="search" name="form-buscar">
-		        <div class="form-group">
-		          <label for="search" class="search " >Fecha </label>
-		          <input type="date" id="search" class="form-control" autocomplete="off" >
-		        </div>
-		        <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-search" ></span> Buscar</button>
-		    </form>
+	      	
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -118,13 +99,10 @@
 			<thead>
 				<tr class="alert-info" >
 					<th class="text-center" >MAQUINA</th>
-					<th class="text-center" >UNIDAD</th>
 					<th class="text-center" >TITULO</th>
-					<th class="text-center" >CODIGO</th>
 					<th class="text-center" >VP</th>
-					<th class="text-center" >KGS</th>
-					<th class="text-center" >CORTES</th>
-					<th class="text-center" >EMPALMES</th>
+					<th class="text-center" >TORSION</th>
+					<th class="text-center" >CONTADOR</th>
 					<th class="text-center" >HORA</th>
 					<th class="text-center" >FECHA</th>
 					<th class="text-center" ></th>
@@ -141,7 +119,7 @@
 		$(function(){
 
 			function knowNombre(myname){
-				tipos = JSON.parse(localStorage.getItem('tipo_bobinadoras'));
+				tipos = JSON.parse(localStorage.getItem('tipo_preparacion'));
 				nombre = "";
 				for(var i=0;i<tipos.length;i++){
 					if(tipos[i]['id']==myname){
@@ -161,16 +139,16 @@
 
 			$('#si').on('click',function(){
 				var id = localStorage.getItem('bob_id_cam_del');
-				new_array = JSON.parse(localStorage.getItem('lis_cambios_bob'));
+				new_array = JSON.parse(localStorage.getItem('lis_cambios_pre'));
 				for (i=0;i<new_array.length;i++){
 					if (new_array[i]['id']==id){
 						new_array.splice(i,1);
 						var jsontostring = JSON.stringify(new_array);
-						localStorage.setItem("lis_cambios_bob", jsontostring);
+						localStorage.setItem("lis_cambios_pre", jsontostring);
 					}
 				}
 				if(new_array.length==0){
-					localStorage.removeItem('lis_cambios_bob');
+					localStorage.removeItem('lis_cambios_pre');
 				}
 				window.location = 'cambiodelete.html';
 			});
@@ -184,28 +162,10 @@
 				});
 			}
 
-			// $('form[name=form-buscar]').on('submit', function(event) {
-			// 	var a=0;
-			// 	event.preventDefault();
-			// 	$('tbody').empty();
-			// 	fecha_search = $('#search').val();
-			// 	ap1 = JSON.parse(localStorage.getItem('lis_cambios_bob'));
-			// 	for(var i=0;i<ap1.length;i++){					
-			// 		if(ap1[i]['fecha']==fecha_search){
-			// 			$('tbody').append("<tr><td>"+ap[i]['nro_maquina']+"</td><td>"+ap[i]['titulo']+"</td><td>"+ap[i]['hora']+"</td><td>"+ap[i]['contador']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
-			// 			a = 1;
-			// 		}	
-			// 	}
-			// 	if(a==0){
-			// 		$('tbody').append("<tr><td colspan='5' ><h2>0 REGISTROS ENCONTRADOS.</h2></td></tr>");
-			// 	}
-			// 	Prueba();
-			// });
-
-			if(localStorage.getItem('lis_cambios_bob')!=null){
-				ap = JSON.parse(localStorage.getItem('lis_cambios_bob'));
+			if(localStorage.getItem('lis_cambios_pre')!=null){
+				ap = JSON.parse(localStorage.getItem('lis_cambios_pre'));
 				for(var i=0;i<ap.length;i++){
-					$('tbody').append("<<tr><td>"+knowNombre(ap[i]['maquina'])+"</td><td>"+ap[i]['unidad']+"</td><td>"+ap[i]['titulo']+"</td><td>"+ap[i]['codigo']+"</td><td>"+ap[i]['vp']+"</td><td>"+ap[i]['kgs']+"</td><td>"+ap[i]['purgador']+"</td><td>"+ap[i]['empalmes']+"</td><td>"+ap[i]['hora_cambio']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");		
+					$('tbody').append("<<tr><td>"+knowNombre(ap[i]['maquina'])+" "+ap[i]['nombre']+"</td><td>"+ap[i]['titulo']+"</td><td>"+ap[i]['vp']+"</td><td>"+ap[i]['torsion']+"</td><td>"+ap[i]['contador']+"</td><td>"+ap[i]['hora_cambio']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");		
 				}
 				Prueba();
 			}

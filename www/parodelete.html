@@ -135,7 +135,7 @@
 		$(function(){
 
 			function knowNombre(myname){
-				tipos = JSON.parse(localStorage.getItem('tipo_bobinadoras'));
+				tipos = JSON.parse(localStorage.getItem('tipo_preparacion'));
 				nombre = "";
 				for(var i=0;i<tipos.length;i++){
 					if(tipos[i]['id']==myname){
@@ -155,15 +155,15 @@
 
 			$('#si').on('click',function(){
 				var id = localStorage.getItem('id_paro_delete');
-				new_array = JSON.parse(localStorage.getItem('lis_paros_bob'));
-				array_individual = JSON.parse(localStorage.getItem('lis_paros_ind_bob'));
+				new_array = JSON.parse(localStorage.getItem('lis_paros_pre'));
+				array_individual = JSON.parse(localStorage.getItem('lis_paros_ind_pre'));
 				for (i=0;i<new_array.length;i++){
 					if (new_array[i]['id']==id){
 						new_array.splice(i,1);						
 					}
 				}
 				var jsontostring = JSON.stringify(new_array);
-				localStorage.setItem("lis_paros_bob", jsontostring);
+				localStorage.setItem("lis_paros_pre", jsontostring);
 				for (i=0;i<array_individual.length;i++){
 					if (array_individual[i]['id']==id){
 						array_individual.splice(i,1);						
@@ -171,10 +171,10 @@
 					}
 				}
 				var jsontostring = JSON.stringify(array_individual);
-				localStorage.setItem("lis_paros_ind_bob", jsontostring);
+				localStorage.setItem("lis_paros_ind_pre", jsontostring);
 				if(new_array.length==0){
-					localStorage.removeItem('lis_paros_ind_bob');
-					localStorage.removeItem('lis_paros_bob');
+					localStorage.removeItem('lis_paros_ind_pre');
+					localStorage.removeItem('lis_paros_pre');
 				}				
 				window.location = 'parodelete.html';
 			});
@@ -193,7 +193,7 @@
 			// 	event.preventDefault();
 			// 	$('tbody').empty();
 			// 	fecha_search = $('#search').val();
-			// 	ap1 = JSON.parse(localStorage.getItem('lis_paros_bob'));
+			// 	ap1 = JSON.parse(localStorage.getItem('lis_paros_pre'));
 			// 	for(var i=0;i<ap1.length;i++){					
 			// 		if(ap1[i]['fecha']==fecha_search){
 			// 			$('tbody').append("<tr><td>"+ap[i]['nro_maquina_uno']+" - "+ap[i]['nro_maquina_dos']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
@@ -206,13 +206,13 @@
 			// 	Prueba();
 			// });
 
-			if(localStorage.getItem('lis_paros_bob')!=null){
-				ap = JSON.parse(localStorage.getItem('lis_paros_bob'));
+			if(localStorage.getItem('lis_paros_pre')!=null){
+				ap = JSON.parse(localStorage.getItem('lis_paros_pre'));
 				for(var i=0;i<ap.length;i++){
 					if(ap[i]['tipo_paro']=="2"){
-						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['unidad_uno']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
+						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['nombre_uno']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
 					}else{
-						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['unidad_uno']+" - "+knowNombre(ap[i]['maquina_dos'])+" "+ap[i]['unidad_dos']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
+						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['nombre_uno']+" - "+knowNombre(ap[i]['maquina_dos'])+" "+ap[i]['nombre_dos']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
 					}
 				}
 				Prueba();

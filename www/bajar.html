@@ -55,6 +55,10 @@
 			maquinas_array = JSON.stringify(json);
 			localStorage.setItem("maquinas_pre", maquinas_array);
 		};
+		var mostrar_inicial_maquinas = function(json){
+			maquinas_inicial_array = JSON.stringify(json);
+			localStorage.setItem("maquinas_pre_inicial", maquinas_inicial_array);
+		};
 		var mostrar_turnos = function(json){
 			turnos_array = JSON.stringify(json);
 			localStorage.setItem("turnos", turnos_array);
@@ -74,6 +78,16 @@
 		$('form').on('submit',function(evt){
 			evt.preventDefault();
 			$.getJSON('http://10.240.17.56/transferencias/bajar/maquinas/preparacion/?callback=?', mostrar_maquinas)
+				.done(function() {
+					$('.alert-success').show().delay(5000).fadeOut();
+					console.log('exito');
+			  	})
+			  	.fail(function() {
+			  		$('.alert-danger').show().delay(5000).fadeOut();
+			  		console.log('fallo');
+			  	});	
+
+			$.getJSON('http://10.240.17.56/transferencias/bajar/inicial/maquinas/preparacion/?callback=?', mostrar_inicial_maquinas)
 				.done(function() {
 					$('.alert-success').show().delay(5000).fadeOut();
 					console.log('exito');

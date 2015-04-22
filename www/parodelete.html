@@ -145,6 +145,17 @@
 				return nombre;
 			}
 
+			function knowLinea(id){
+				lineas = JSON.parse(localStorage.getItem('lineas'));
+				nombre = "";
+				for(var i=0;i<lineas.length;i++){
+					if(lineas[i]['id']==id){
+						nombre = lineas[i]['descripcion'];
+					}
+				}
+				return nombre;
+			}
+
 			$('#menu').on('click',function(){
 				window.location = 'index.html';
 			});
@@ -211,8 +222,10 @@
 				for(var i=0;i<ap.length;i++){
 					if(ap[i]['tipo_paro']=="2"){
 						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['nombre_uno']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
-					}else{
+					}else if(ap[i]['tipo_paro']=="1"){
 						$('tbody').append("<tr><td>"+knowNombre(ap[i]['maquina_uno'])+" "+ap[i]['nombre_uno']+" - "+knowNombre(ap[i]['maquina_dos'])+" "+ap[i]['nombre_dos']+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
+					}else{
+						$('tbody').append("<tr><td>"+knowLinea(ap[i]['linea'])+"</td><td>"+ap[i]['hora_inicio']+"</td><td>"+ap[i]['hora_fin']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");
 					}
 				}
 				Prueba();

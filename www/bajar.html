@@ -13,9 +13,14 @@
 			MENU <span class="glyphicon glyphicon-align-justify" ></span>
 		</a>
 	</div>
-	<div class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
+	<div id="error-red" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
 		<h3>
-			Error al transferir datos.
+			Error de coneccion.
+		</h3>
+	</div>
+	<div id="error-lecturas" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
+		<h3>
+			Necesita subir lecturas.
 		</h3>
 	</div>
 	<div class="alert alert-success text-center" style="margin-top:3em;" role="alert">
@@ -28,7 +33,7 @@
 			<span class="glyphicon glyphicon-download"></span>
 		</div>
 		<div class="row text-center" >
-			<button type="submit" style="font-size:4em;" class="btn btn-success btn-lg">Bajar Datos</button>
+			<button id="bajar" type="submit" style="font-size:4em;" class="btn btn-success btn-lg">Bajar Datos</button>
 		</div>
 	</form>
 	<script type="text/javascript" src="js/jquery.min.js" ></script>
@@ -41,15 +46,19 @@
 		$('.alert-success').css('display','none');
 		$('#bajar').css('display','none');
 
-		$.getJSON('http://10.240.17.56/transferencias/coneccion/preparacion/?callback=?')
-		.done(function(response) {
-			console.log('exito');
-			localStorage.setItem("turno_val_pre", response.turno);
-			$('#bajar').css('display','inline');
-		})
-		.fail(function() {
-			$('#error-red').show().delay(5000).fadeOut();
-		});
+		if(localStorage.getItem("lis_lec_pre")==null && localStorage.getItem("lis_parcial_pre")==null){
+			$.getJSON('http://10.240.17.56/transferencias/coneccion/preparacion/?callback=?')
+			.done(function(response) {
+				console.log('exito');
+				localStorage.setItem("turno_val_pre", response.turno);
+				$('#bajar').css('display','inline');
+			})
+			.fail(function() {
+				$('#error-red').show().delay(5000).fadeOut();
+			});
+		}else{
+			$('#error-lecturas').show().delay(5000).fadeOut();
+		}
 
 		var mostrar_maquinas = function(json){
 			maquinas_array = JSON.stringify(json);

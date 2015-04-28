@@ -141,7 +141,7 @@
 				lb = JSON.parse(localStorage.getItem('lis_lec_pre'));
 				for(var i=0;i<lb.length;i++){
 					turno = knowTurno(lb[i]['turno']);
-					$('tbody').append("<tr><td>"+knowNombre(lb[i]['maquina'])+"</td><td>"+lb[i]['unidad']+"</td><td>"+lb[i]['kgs']+"</td><td>"+lb[i]['purgador']+"</td><td>"+lb[i]['empalmes']+"</td><td>"+turno+"</td><td><a href='lecturaupdate2.html' id="+lb[i]['id']+" class='btn btn-primary' ><span class='glyphicon glyphicon-pencil' ></span></a></td></tr>");		
+					$('tbody').append("<tr><td>"+knowNombre(lb[i]['maquina'])+" - "+lb[i]['nombre']+"</td><td>"+lb[i]['contador']+"</td><td>"+turno+"</td><td><a href='lecturaupdate2.html' id="+lb[i]['id']+" class='btn btn-primary' ><span class='glyphicon glyphicon-pencil' ></span></a></td></tr>");		
 				}
 				Prueba();
 			}
@@ -149,7 +149,7 @@
 				lp = JSON.parse(localStorage.getItem('lis_parcial_pre'));
 				for(var i=0;i<lp.length;i++){
 					turno = knowTurno(lp[i]['turno']);
-					$('tbody').append("<tr><td>"+knowNombre(lp[i]['maquina'])+"</td><td>"+lp[i]['unidad']+"</td><td>"+lp[i]['kgs']+"</td><td>"+lp[i]['purgador']+"</td><td>"+lp[i]['empalmes']+"</td><td>"+turno+"</td><td><a href='lecturaupdate2.html' id="+lp[i]['id']+" class='btn btn-primary' ><span class='glyphicon glyphicon-pencil' ></span></a></td></tr>");		
+					$('tbody').append("<tr><td>"+knowNombre(lp[i]['maquina'])+" - "+lp[i]['nombre']+"</td><td>"+lp[i]['contador']+"</td><td>"+turno+"</td><td><a href='lecturaupdate2.html' id="+lp[i]['id']+" class='btn btn-primary' ><span class='glyphicon glyphicon-pencil' ></span></a></td></tr>");		
 				}
 				Prueba();
 			}

@@ -47,88 +47,37 @@
 		      	<select name="maquina" id="maquina" class="form-control input_grande" required="required" >
 				</select>
 		    </div>
-		    <div class="row">
-		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-maquina" role="alert">
-		      		<h2>ERROR!</h2>
-		      	</div>
-		    </div>
 		</div>
 		<div class="form-group">
 			<div class="text-center">
-		   		<label for="unidad" class="control-label label_grande">UNIDAD</label>
+		   		<label for="nombre" class="control-label label_grande">NOMBRE</label>
 		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="unidad_1" name="unidad_1" >
+			<div class="col-sm-1 col-xs-1"></div>
+		   	<div class="col-sm-4 col-xs-4">
+		   		<select id="ini_nombre" class="form-control input_grande" ></select>
 		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande dunidad" id="unidad_2" name="unidad_2" value="1" >
-		    </div>
-		    <div class="row">
-		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-unidad" role="alert">
-		      		<h2>ERROR!</h2>
-		      	</div>
-		    </div>
-		</div>
-		<div class="form-group">
-			<div class="text-center">
-		   		<label for="kgs" class="control-label label_grande">KGS</label>
-		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="kgs_1" name="kgs_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="kgs_2" name="kgs_2" >
+		   	<div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="nombre" name="nombre" autocomplete="off" >
 		    </div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-kgs" role="alert">
-	      		<h2>COMPLETAR!</h2>
-	      	</div>
-	    </div>
-		<div class="form-group">
-			<div class="text-center">
-		   		<label for="purgador" class="control-label label_grande">CORTE PURGADOR</label>
-		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="purgador_1" name="purgador_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="purgador_2" name="purgador_2" >
-		    </div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-purgador" role="alert">
-	      		<h2>COMPLETAR!</h2>
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-nombre" role="alert">
+	      		<h2>ERROR!</h2>
 	      	</div>
 	    </div>
 	    <div class="form-group">
 			<div class="text-center">
-		   		<label for="empalmes" class="control-label label_grande">EMPALMES</label>
+		   		<label for="contador" class="control-label label_grande">CONTADOR</label>
 		   	</div>
-		   	<div class="col-sm-7 col-xs-7">
-		      	<input type="number" class="form-control input_grande" id="empalmes_1" name="empalmes_1" >
-		    </div>
-		    <div class="col-sm-1 col-xs-1">
-		    	<label class="control-label label_grande">.</label>
-		    </div>
-		    <div class="col-sm-4 col-xs-4">
-		    	<input type="number" class="form-control input_grande decimal" id="empalmes_2" name="empalmes_2" >
+		   	<div class="col-md-4"></div>
+		    <div class="col-sm-1 col-md-4">
+		      <input type="number" class="form-control input_grande" id="contador" name="contador">
 		    </div>
 		</div>
 		<div class="row">
 			<div class="col-md-4"></div>
-	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-empalmes" role="alert">
+	    	<div class="alert alert-danger text-center col-sm-1 col-md-4" id="error-contador" role="alert">
 	      		<h2>COMPLETAR!</h2>
 	      	</div>
 	    </div>
@@ -144,14 +93,14 @@
 <script>
 	var MyJson_lectura;
 	var array = [];
-	if (localStorage.getItem("lis_parcial_bob")!=null){
-		array = JSON.parse(localStorage.getItem("lis_parcial_bob"));
-		len_lecturas = JSON.parse(localStorage.getItem("lis_parcial_bob")).length;
+	if (localStorage.getItem("lis_parcial_pre")!=null){
+		array = JSON.parse(localStorage.getItem("lis_parcial_pre"));
+		len_lecturas = JSON.parse(localStorage.getItem("lis_parcial_pre")).length;
 	}else{
 		len_lecturas = 0;
 	}
-	if(localStorage.getItem('id_bob')==null){
-		localStorage.setItem('id_bob',1);
+	if(localStorage.getItem('id_pre')==null){
+		localStorage.setItem('id_pre',1);
 	}
 	// FECHA Y HORA						
 		var fecha = new Date();
@@ -166,26 +115,44 @@
 	// FECHA Y HORA
 
 	$(function(){
+	// Tipo preparacion
+	array_tp = JSON.parse(localStorage.getItem("tipo_preparacion"));
+	for(var i=0;i<array_tp.length;i++){
+		$('#maquina').append('<option value='+array_tp[i].id+' >'+array_tp[i].descripcion+'</option>');
+	}
+	/* NOMBRE MAQUINA */
+	ini_m = JSON.parse(localStorage.getItem('maquinas_pre_inicial'));
+	for(var i=0;i<ini_m.length;i++){
+		id_maq = $('#maquina').val();
+		if(ini_m[i].tipo == id_maq){
+			$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+		}			
+	}
+	$("#maquina").change(function() {
+		id_maq = $('#maquina').val();
+		$('#ini_nombre option').remove();
+	 	for(var i=0;i<ini_m.length;i++){
+			if(ini_m[i].tipo == id_maq){
+				$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
+			}			
+		}
+	});
+	/* NOMBRE MAQUINA */
 
-		if(localStorage.getItem('turno_bob')==null){
+		if(localStorage.getItem('turno_pre')==null){
 			window.location = 'lecturamenu.html';
 		}
 
-		if (localStorage.getItem("lis_lec_bob")!=null || localStorage.getItem("tipo_lec_2_bob")=="normal"){
+		if (localStorage.getItem("lis_lec_pre")!=null || localStorage.getItem("tipo_lec_2_pre")=="normal"){
 			$('#mensajitos').remove();
 			$('#mensajes').append("<div id='mensajitos' ></div>");
 			$('#mensajitos').append("<h2 >Necesita subir lectura normal.</h2>");
 			$('#modalbox').click();
 		}
-		// Tipo bobinadoras
-		array_tb = JSON.parse(localStorage.getItem("tipo_bobinadoras"));
-		for(var i=0;i<array_tb.length;i++){
-			$('#maquina').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
-		}
 		
 	// FECHA Y TURNO
 	    my_array = JSON.parse(localStorage.getItem('turnos'));
-    	if((localStorage.getItem('turno_bob')=="2" || localStorage.getItem('turno_bob')=="3") && hora < 21){
+    	if((localStorage.getItem('turno_pre')=="2" || localStorage.getItem('turno_pre')=="3") && hora < 21){
     		fecha.setDate(fecha.getDate()-1);
     	}
     	dia = fecha.getDate();
@@ -200,17 +167,16 @@
     // FECHA Y TURNO
 		$('.alert-danger').css('display','none');
 		var metros="";
-		function Valida(unidad){
+		function Valida(nombre){
 			var rpta = 0;
 			var flag_repeat = 0;
 			$('#digitos').remove();
-			nombre = $('#maquina').val();		
-			if(localStorage.getItem('lis_parcial_bob')!=null){
-				parcial = JSON.parse(localStorage.getItem('lis_parcial_bob'));
-				v1 = localStorage.getItem("turno_bob");
-				v2 = fecha_lectura;
+			maquina = $('#maquina').val();		
+			if(localStorage.getItem('lis_parcial_pre')!=null){
+				parcial = JSON.parse(localStorage.getItem('lis_parcial_pre'));
+				v1 = localStorage.getItem("turno_pre");
 				for (var i=0;i<parcial.length;i++){
-					if(nombre==parcial[i]['maquina'] && unidad==parcial[i]['unidad'] && v1==parcial[i]['turno'] && v2 == parcial[i]['fecha']){
+					if(maquina ==parcial[i]['maquina'] && nombre==parcial[i]['nombre'] && v1==parcial[i]['turno']){
 						flag_repeat = 1;
 						rpta = 1;
 						$('#maquina-repeat').show().delay(5000).fadeOut();		
@@ -218,59 +184,41 @@
 				}
 			}
 			if (flag_repeat==0){
-				if ($('#kgs_1').val()==""){
-					rpta = 0;
-					$('#error-kgs').show().delay(5000).fadeOut();
-				}
-				if ($('#purgador_1').val()==""){
-					rpta = 0;
-					$('#error-purgador').show().delay(5000).fadeOut();
-				}
-				if ($('#empalmes_1').val()==""){
-					rpta = 0;
-					$('#error-empalmes').show().delay(5000).fadeOut();
-				}
-				var flag = 0;
-				array_maquinas = JSON.parse(localStorage.getItem('maquinas_bob'));
-				for(var i=0;i<array_maquinas.length;i++){
-					if(array_maquinas[i].nombre==$('#maquina').val() && array_maquinas[i].unidad==unidad){
-						flag = 1;
-					}
-				}
-				if (flag!=1){
-					$('#error-unidad').show().delay(5000).fadeOut();
+				if ($('#contador').val()==""){
 					rpta = 1;
+					$('#error-contador').show().delay(5000).fadeOut();
+				}else{
+					var flag = 0;
+					array_maquinas = JSON.parse(localStorage.getItem('maquinas_pre'));
+					digitos = parseInt($('#contador').val().length,10);
+					for(var i=0;i<array_maquinas.length;i++){
+						if(array_maquinas[i].tipomaquina==$('#maquina').val() && array_maquinas[i].nombre==nombre){
+							flag = 1;
+							if(array_maquinas[i].digitos!=digitos){
+								$('#error-contador').append('<h2 id="digitos" >'+array_maquinas[i].digitos+' digitos</h2>');
+								$('#error-contador').show().delay(5000).fadeOut();
+								rpta = 1;
+							}
+						}
+					}
+					if (flag!=1){
+						$('#error-nombre').show().delay(5000).fadeOut();
+						rpta = 1;
+					}
 				}
 			}
 			return rpta;
 		}
 
 		function terminar(param1){
-			unidad = $('#unidad_1').val()+"."+$('#unidad_2').val();	
-			if($('#kgs_2').val()==""){
-				kgs = $('#kgs_1').val()+".0";
-			}else{
-				kgs = $('#kgs_1').val()+"."+$('#kgs_2').val();
-			}
-			if($('#purgador_2').val()==""){
-				purgador = $('#purgador_1').val()+".0";
-			}else{
-				purgador = $('#purgador_1').val()+"."+$('#purgador_2').val();
-			}
-			if($('#empalmes_2').val()==""){
-				empalmes = $('#empalmes_1').val()+".0";
-			}else{
-				empalmes = $('#empalmes_1').val()+"."+$('#empalmes_2').val();
-			}	
-			if(Valida(unidad)==0){
+			nombre = $('#ini_nombre').val()+$('#nombre').val();
+			if(Valida(nombre)==0){
 				MyJson_lectura = {
-					"id" : localStorage.getItem("id_bob"),
+					"id" : localStorage.getItem("id_pre"),
 					"maquina" : $('#maquina').val(),
-					"unidad" : unidad,
-					"kgs" : kgs,
-					"purgador" : purgador,
-					"empalmes" : empalmes,
-					"turno" : localStorage.getItem("turno_bob"),
+					"nombre" : nombre,
+					"contador" : $("#contador").val(),
+					"turno" : localStorage.getItem("turno_pre"),
 					"fecha" : fecha_lectura,
 					"hora" : hora_ingreso,
 					"tipo_lectura" : "PARCIAL",
@@ -278,9 +226,9 @@
 				}
 				array.push(MyJson_lectura);
 				var jsontostring = JSON.stringify(array);
-				id = parseInt(localStorage.getItem("id_bob"));
-				localStorage.setItem('id_bob',id+1);
-				localStorage.setItem("lis_parcial_bob", jsontostring);				
+				id = parseInt(localStorage.getItem("id_pre"),10);
+				localStorage.setItem('id_pre',id+1);
+				localStorage.setItem("lis_parcial_pre", jsontostring);				
 				if(param1==1){
 					window.location = 'lecturaparcial2.html';					
 				}
@@ -296,12 +244,12 @@
 
 		$('#finish').on('click',function(evt){
 			evt.preventDefault();			
-			if(terminar(2)){
+			if(terminar(2) || ($('#nombre').val()=="" &&  $('#contador').val()=="") ){
 				$('#mensajitos').remove();
 				$('#mensajes').append("<div id='mensajitos' ></div>");
 				$('#mensajitos').append("<h2 >Lectura parcial terminada.</h2>");
 				$('#modalbox').click();
-				localStorage.removeItem('turno_bob');				
+				localStorage.removeItem('turno_pre');				
 			}
 		});	
 		

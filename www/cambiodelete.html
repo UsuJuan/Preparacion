@@ -102,6 +102,9 @@
 					<th class="text-center" >TITULO</th>
 					<th class="text-center" >VP</th>
 					<th class="text-center" >TORSION</th>
+					<th class="text-center" >K. HORA</th>
+					<th class="text-center" >P. NAPA</th>
+					<th class="text-center" >RPM</th>
 					<th class="text-center" >CONTADOR</th>
 					<th class="text-center" >HORA</th>
 					<th class="text-center" >FECHA</th>
@@ -165,7 +168,7 @@
 			if(localStorage.getItem('lis_cambios_pre')!=null){
 				ap = JSON.parse(localStorage.getItem('lis_cambios_pre'));
 				for(var i=0;i<ap.length;i++){
-					$('tbody').append("<<tr><td>"+knowNombre(ap[i]['maquina'])+" "+ap[i]['nombre']+"</td><td>"+ap[i]['titulo']+"</td><td>"+ap[i]['vp']+"</td><td>"+ap[i]['torsion']+"</td><td>"+ap[i]['contador']+"</td><td>"+ap[i]['hora_cambio']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");		
+					$('tbody').append("<<tr><td>"+knowNombre(ap[i]['maquina'])+" "+ap[i]['nombre']+"</td><td>"+ap[i]['titulo']+"</td><td>"+ap[i]['vp']+"</td><td>"+ap[i]['torsion']+"</td><td>"+ap[i]['kgs_hora']+"</td><td>"+ap[i]['peso_napa']+"</td><td>"+ap[i]['rpm']+"</td><td>"+ap[i]['contador']+"</td><td>"+ap[i]['hora_cambio']+"</td><td>"+ap[i]['fecha']+"</td><td><a href='#' id="+ap[i]['id']+" class='btn btn-danger' ><span class='glyphicon glyphicon-remove' ></span></a></td></tr>");		
 				}
 				Prueba();
 			}

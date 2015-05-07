@@ -61,7 +61,7 @@
 		   	</div>
 		   	<div class="col-md-3"></div>
 		    <div class="col-sm-10 col-md-6">
-		    	<select name="maquina" id="maquina" class="form-control input_grande" required="required" >
+		    	<select name="maquina" id="maquina" class="form-control input_grande" >
 				</select>		      
 		    </div>
 		    <div class="row">
@@ -90,11 +90,45 @@
 	    </div>
 		<div class="form-group">
 			<div class="text-center">
+		    	<label for="linea" class="control-label label_grande">LINEA</label>
+		    </div>
+		    <div class="col-md-3"></div>
+		    <div class="col-sm-10 col-md-6">
+		      	<select name="linea" id="linea" class="form-control input_grande" >
+				</select>
+		    </div>
+		</div>
+		<div id='kilos_hora' class="form-group">
+			<div class="text-center">
+		   		<label for="kgs_hora" class="control-label label_grande">KILOS/HORA</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="kgs_hora" name="kgs_hora" >
+		    </div>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="kgs_hora2" name="kgs_hora2" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-kgs_hora" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="ne" class="form-group">
+			<div class="text-center">
 		   		<label for="titulo" class="control-label label_grande">TITULO</label>
 		   	</div>
-		   	<div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      <input type="number" class="form-control input_grande numero" id="titulo" name="titulo" autocomplete="off" >
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="titulo" name="titulo" >
+		    </div>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="titulo2" name="titulo2" >
 		    </div>
 		    <div class="row">
 		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-titulo" role="alert">
@@ -102,13 +136,37 @@
 		      	</div>
 		    </div>
 		</div>
-		<div class="form-group">
+		<div id="napa" class="form-group">
+			<div class="text-center">
+		   		<label for="peso_napa" class="control-label label_grande">PESO NAPA</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="peso_napa" name="peso_napa" >
+		    </div>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="peso_napa2" name="peso_napa2" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-peso_napa" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
+		    </div>
+		</div>
+		<div id="tor" class="form-group">
 			<div class="text-center">
 		   		<label for="torsion" class="control-label label_grande">TORSION</label>
 		   	</div>
-		   	<div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      <input type="number" class="form-control input_grande numero" id="torsion" name="torsion" autocomplete="off" >
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="torsion" name="torsion" >
+		    </div>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="torsion2" name="torsion2" >
 		    </div>
 		    <div class="row">
 		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-torsion" role="alert">
@@ -116,13 +174,18 @@
 		      	</div>
 		    </div>
 		</div>
-		<div class="form-group">
+		<div id="vel_pro" class="form-group">
 			<div class="text-center">
-		   		<label for="vp" class="control-label label_grande">VP</label>
+		   		<label for="vp" class="control-label label_grande">VEL. PROD.</label>
 		   	</div>
-		   	<div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      <input type="number" class="form-control input_grande numero" id="vp" name="vp" autocomplete="off" >
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="vp" name="vp" >
+		    </div>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="vp2" name="vp2" >
 		    </div>
 		    <div class="row">
 		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-vp" role="alert">
@@ -130,14 +193,23 @@
 		      	</div>
 		    </div>
 		</div>
-		<div class="form-group">
+		<div id="rpm_huso" class="form-group">
 			<div class="text-center">
-		    	<label for="linea" class="control-label label_grande">LINEA</label>
+		   		<label for="rpm" class="control-label label_grande">RPM/HUSO</label>
+		   	</div>
+		   	<div class="col-sm-6 col-xs-6">
+		      	<input type="number" class="form-control input_grande" id="rpm" name="rpm" >
 		    </div>
-		    <div class="col-md-3"></div>
-		    <div class="col-sm-10 col-md-6">
-		      	<select name="linea" id="linea" class="form-control input_grande" required="required" >
-				</select>
+		   	<div class="col-sm-1 col-xs-1">
+		    	<label class="control-label label_grande">.</label>
+		    </div>
+		    <div class="col-sm-5 col-xs-5">
+		      	<input type="number" class="form-control input_grande" id="rpm2" name="rpm2" >
+		    </div>
+		    <div class="row">
+		    	<div class="alert alert-danger text-center col-sm-10 col-md-6" id="error-rpm" role="alert">
+		      		<h2>COMPLETAR!</h2>
+		      	</div>
 		    </div>
 		</div>
 		<div class="form-group">
@@ -206,9 +278,6 @@
 	// FECHA Y HORA
 		var fecha = new Date();
 		hora = fecha.getHours();
-		// if (hora<=6){
-		// 	fecha.setDate(fecha.getDate()-1);
-		// }
 		dia = fecha.getDate();
 		mes = fecha.getMonth()+1;
 		annio = fecha.getFullYear();
@@ -223,9 +292,9 @@
 
 	$(function(){
 		// Tipo de preparacion
-		array_tb = JSON.parse(localStorage.getItem("tipo_preparacion"));
-		for(var i=0;i<array_tb.length;i++){
-			$('#maquina').append('<option value='+array_tb[i].id+' >'+array_tb[i].descripcion+'</option>');
+		array_tp = JSON.parse(localStorage.getItem("tipo_preparacion"));
+		for(var i=0;i<array_tp.length;i++){
+			$('#maquina').append('<option value='+array_tp[i].id+' >'+array_tp[i].descripcion+'</option>');
 		}
 		annio_2 = String(annio).substring(2,4);
 		$('#dia').val(dia);
@@ -264,17 +333,66 @@
 			id_maq = $('#maquina').val();
 			if(ini_m[i].tipo == id_maq){
 				$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
-			}			
-		}
+			}
+		}		
 		$("#maquina").change(function() {
 			id_maq = $('#maquina').val();
+			codigo = "";
+			for(var i=0;i<array_tp.length;i++){
+				if(id_maq==array_tp[i].id){
+					codigo = array_tp[i].codigo;
+				}
+			}
+			switch(codigo){
+			    case "02":
+			    	$('#kilos_hora').css('display','block');
+			    	$('#ne').css('display','block');
+			    	$('#napa').css('display','none');
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','none');
+			    	$('#rpm_huso').css('display','none');
+			        break;
+			    case "03":			        
+			        $('#kilos_hora').css('display','none');
+			    	$('#ne').css('display','block');
+			    	$('#napa').css('display','block');
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','block');
+			    	$('#rpm_huso').css('display','none');
+			        break;
+			    case "04":			        
+			    	$('#kilos_hora').css('display','block');
+			    	$('#ne').css('display','block');
+			    	$('#napa').css('display','none');
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','block');
+			    	$('#rpm_huso').css('display','none');
+			        break;
+			    case "05":			        
+			    	$('#kilos_hora').css('display','none');
+			    	$('#ne').css('display','block');
+			    	$('#napa').css('display','none');
+			    	$('#tor').css('display','none');
+			    	$('#vel_pro').css('display','block');
+			    	$('#rpm_huso').css('display','none');
+			        break;
+			    case "06":			        
+			    	$('#kilos_hora').css('display','none');
+			    	$('#ne').css('display','block');
+			    	$('#napa').css('display','none');
+			    	$('#tor').css('display','block');
+			    	$('#vel_pro').css('display','none');
+			    	$('#rpm_huso').css('display','block');
+			        break;
+			}
 			$('#ini_nombre option').remove();
 		 	for(var i=0;i<ini_m.length;i++){
 				if(ini_m[i].tipo == id_maq){
 					$('#ini_nombre').append('<option value='+ini_m[i].nombre+' >'+ini_m[i].nombre+'</option>');
-				}			
+				}
 			}
 		});
+		$("#maquina").change();
 		/* COMBOS LETRA INICIAL MAQUINA */
 
 		$('form[name=form_cambios]').on('submit',function(evt){
@@ -286,12 +404,15 @@
 				Json_cambios_pre = {
 					"id" : localStorage.getItem("id_cam_pre"),
 					"maquina" : $('#maquina').val(),
-					"nombre" : nombre,
-					"titulo" : $('#titulo').val(),					
-					"vp" : $('#vp').val(),
-					"torsion" : $('#torsion').val(),
-					"contador" : $('#contador').val(),
+					"nombre" : nombre,					
 					"linea" : $("#linea").val(),
+					"kgs_hora" : VerVacio("kgs_hora")+"."+VerVacio("kgs_hora2"),
+					"titulo" : VerVacio("titulo")+"."+VerVacio("titulo2"),
+					"peso_napa" : VerVacio("peso_napa")+"."+VerVacio("peso_napa2"),
+					"torsion" : VerVacio("torsion")+"."+VerVacio("torsion2"),
+					"vp" : VerVacio("vp")+"."+VerVacio("vp2"),
+					"rpm" : VerVacio("rpm")+"."+VerVacio("rpm2"),
+					"contador" : $('#contador').val(),
 					"hora_cambio" : HoraTwoPto+":00",
 					"fecha" : fec,
 					"fecha_ingreso":fecha_string,
@@ -346,22 +467,35 @@
 						rpta = 1;
 					}
 				}
-				if($('#titulo').val()==""){
-					rpta = 0;
-					$('#error-titulo').show().delay(5000).fadeOut();
+				switch(codigo){
+				    case "02":
+				    	VerError("kgs_hora");
+				    	VerError("titulo");
+				        break;
+				    case "03":
+				    	if (parseInt(nombre,10) > 0){
+					    	VerError("titulo");
+				    	}else{
+					    	VerError("peso_napa");
+					    }
+				    	VerError("vp");
+				        break;
+				    case "04":			        
+				    	VerError("kgs_hora");
+				    	VerError("titulo");
+				    	VerError("vp");
+				        break;
+				    case "05":
+				    	VerError("titulo");
+				    	VerError("vp");
+				        break;
+				    case "06":
+					    VerError("titulo");
+					    VerError("torsion");
+					    VerError("rpm");
+				        break;
 				}
-				if($('#vp').val()==""){
-					rpta = 0;
-					$('#error-vp').show().delay(5000).fadeOut();
-				}
-				if($('#torsion').val()==""){
-					rpta = 0;
-					$('#error-torsion').show().delay(5000).fadeOut();
-				}
-				if($('#contador').val()==""){
-					rpta = 0;
-					$('#error-contador').show().delay(5000).fadeOut();
-				}
+				VerError("contador");
 				if($('#hora').val().length!=2 || parseInt($('#hora').val())>23){
 					rpta = 0;
 					$('#error-hora').show().delay(5000).fadeOut();
@@ -384,8 +518,23 @@
 						$('#error-annio').show().delay(5000).fadeOut();
 					}
 				}
-				return rpta;
+				function VerError(campo){
+					if($(String('#'+campo)).val()==""){
+						$(String('#error-'+campo)).show().delay(5000).fadeOut();
+						rpta = 0;
+					}
+				}
+				return rpta;				
 			}
+
+			function VerVacio(campo){
+				valor = $(String('#'+campo)).val();
+				if($(String('#'+campo)).val()==""){
+					valor = "0";
+				}
+				return valor;
+			}
+
 		});
 	})
 </script>

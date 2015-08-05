@@ -151,28 +151,28 @@
 	    // FECHA Y TURNO
 	
 		$('#error-contador').css('display','none');
-
+		array_maquinas_pre = JSON.parse(localStorage.getItem("maquinas_pre");
 		function MyFunction(){
-			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_pre"))[0].tipomaquina);
-			$('#nombre').val(JSON.parse(localStorage.getItem("maquinas_pre"))[0].nombre);
+			$('#maquina').val(array_maquinas_pre[0].tipomaquina);
+			$('#nombre').val(array_maquinas_pre[0].nombre);
 		}
 		if(len_lecs_pre == 0){
 			localStorage.setItem("contador_pre",0);
 			cont=0;
 			MyFunction();
-		}else if((len_lecs_pre % JSON.parse(localStorage.getItem("maquinas_pre")).length)==0){
+		}else if((len_lecs_pre % array_maquinas_pre.length)==0){
 			localStorage.setItem("contador_pre",0);		
 			cont = localStorage.getItem("contador_pre");	
 			cont=0;
 			MyFunction();
 		}else{
-			$('#maquina').val(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].tipomaquina);
-			$('#nombre').val(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].nombre);
+			$('#maquina').val(array_maquinas_pre[cont].tipomaquina);
+			$('#nombre').val(array_maquinas_pre[cont].nombre);
 		}
 
 		function Valida(){
 			var rpta=1;
-			var nro_dig = parseInt(JSON.parse(localStorage.getItem("maquinas_pre"))[cont].digitos);
+			var nro_dig = parseInt(array_maquinas_pre[cont].digitos);
 			$('#digitos').remove();
 			if ($('#contador').val()==""){
 				rpta = 0;
@@ -208,7 +208,7 @@
 				localStorage.setItem('id_pre',id+1);
 				localStorage.setItem("contador_pre", cont);
 				localStorage.setItem("lis_lec_pre", jsontostring);
-				if(((len_lecs_pre+1) % JSON.parse(localStorage.getItem("maquinas_pre")).length)==0){
+				if(((len_lecs_pre+1) % array_maquinas_pre.length)==0){
 					$('#mensajitos').remove();
 					$('#mensajes').append("<div id='mensajitos' ></div>");
 					$('#mensajitos').append("<h2 >La ruta ha terminado.</h2>");

@@ -49,7 +49,6 @@
 		if(localStorage.getItem("lis_lec_pre")==null && localStorage.getItem("lis_parcial_pre")==null){
 			$.getJSON('http://192.168.1.44/transferencias/coneccion/preparacion/?callback=?')
 			.done(function(response) {
-				console.log(response);
 				if(localStorage.getItem("turno_pre")==null){
 					localStorage.setItem("turno_val_pre", response.turno);
 				}

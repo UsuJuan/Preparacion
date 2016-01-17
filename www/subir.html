@@ -56,21 +56,21 @@
 
 	$(function(){	
 
-		$('#subir').css('display','none');
-		$('#loading').css('display','none');
-		$('.alert-success').css('display','none');
-		$('.alert-danger').css('display','none');
+		$('#subir').fadeOut();
+		$('#loading').fadeOut();
+		$('.alert-success').fadeOut();
+		$('.alert-danger').fadeOut();
 
 		function ShowError(message){
 			$('.alert-danger h3').remove();
 			$('.alert-danger').append('<h3 >'+message+'</h3>');
-			$('.alert-danger').show().delay(90000).fadeOut();
+			$('.alert-danger').fadeIn();
 		}
 
-		$.getJSON('http://192.168.1.44/transferencias/coneccion/preparacion/?callback=?')
+		$.getJSON('http://192.168.1.35/transferencias/coneccion/preparacion/?callback=?')
 		.done(function() {
 			console.log('exito');
-			$('#subir').css('display','inline');
+			$('#subir').fadeIn();
 		})
 		.fail(function() {
 			ShowError("Compruebe su coneccion a la red.");
@@ -98,7 +98,7 @@
 
 		function terminar(){
 			
-			$('#loading').show().delay(90000).fadeOut();
+			$('#loading').fadeIn();
 
 			array01 = JSON.parse(localStorage.getItem('lis_parcial_pre'));
 			if (array01!=null){
@@ -127,7 +127,7 @@
 			}
 
 			$.ajax({
-				url: 'http://192.168.1.44/transferencias/subir/preparacion/',
+				url: 'http://192.168.1.35/transferencias/subir/preparacion/',
 				type: 'POST',
 				crossDomain: true,
 				data: {					
@@ -138,10 +138,10 @@
 				dataType: 'json',		
 			})
 			.done(function(response) {
-				$('#loading').css('display','none');
+				$('#loading').fadeOut();
 				if(response.msg=='ok'){
 					console.log("success ok");
-					$('.alert-success').show().delay(90000).fadeOut();
+					$('.alert-success').fadeIn();
 					localStorage.removeItem('lis_paros_pre');
 					localStorage.removeItem('lis_paros_ind_pre');
 					localStorage.removeItem('lis_cambios_pre');
@@ -160,7 +160,7 @@
 			})
 			.fail(function() {
 				console.log("error");
-				$('#loading').css('display','none');
+				$('#loading').fadeOut();
 				ShowError("Error al subir datos (1).");
 				$('#modalbox').click();
 			});

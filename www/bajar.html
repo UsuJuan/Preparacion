@@ -13,13 +13,22 @@
 			MENU <span class="glyphicon glyphicon-align-justify" ></span>
 		</a>
 	</div>
-	<div class="alert alert-danger text-center" role="alert"></div>
+	<div id="error-red" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
+ 		<h3>
+ 			Error de coneccion.
+ 		</h3>
+ 	</div>
+ 	<div id="error-lecturas" class="alert alert-danger text-center" style="margin-top:3em;" role="alert">
+ 		<h3>
+ 			Necesita subir lecturas.
+ 		</h3>
+ 	</div>
 	<div class="alert alert-success text-center" role="alert">
 		<h3>
 			Los datos se bajaron con exito.
 		</h3>
 	</div>
-	<form class="form-horizontal" role="form" action="" method="POST" >
+	<form class="form-horizontal my_form" role="form" action="" method="POST" >
 		<div class="row text-center flechita">
 			<span class="glyphicon glyphicon-download"></span>
 		</div>
@@ -37,12 +46,6 @@
 		$('.alert-success').css('display','none');
 		$('#bajar').css('display','none');
 
-		function ShowError(message){
-			$('.alert-danger h3').remove();
-			$('.alert-danger').append('<h3 >'+message+'</h3>');
-			$('.alert-danger').show().delay(5000).fadeOut();
-		}
-
 		if(localStorage.getItem("lis_lec_pre")==null && localStorage.getItem("lis_parcial_pre")==null){
 			$.getJSON('http://192.168.1.44/transferencias/coneccion/preparacion/?callback=?')
 			.done(function(response) {
@@ -53,10 +56,10 @@
 				$('#bajar').css('display','inline');
 			})
 			.fail(function(){
-				ShowError("Error en la coneccion de red.");
+				$('#error-red').show().delay(5000).fadeOut();
 			});
 		}else{
-			ShowError('Necesita subir lecturas.')
+			$('#error-lecturas').show().delay(5000).fadeOut();
 		}
 
 		var mostrar_maquinas = function(json){

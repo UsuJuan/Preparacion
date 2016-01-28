@@ -90,8 +90,8 @@
 		}
 		
 		$('#subir').on('click',function(){
-			console.log('click in the button');
-			$(this).prop('disabled',true);
+			$('#subir').fadeOut();
+			$(this).prop('disabled','disabled');
 			terminar();
 		});
 
